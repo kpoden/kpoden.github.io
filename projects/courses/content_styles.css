@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.container {
+
+}
+
+a {
+    text-decoration: none;
+    color: rgb(36, 36, 36);
+    font-weight: 400;
+}
+
+.menu__list {
+    margin-left: 20px;
+    padding-bottom: 50px;
+}
+
+.menu__item {
+    /* list-style-type: none; */
+    padding-bottom: 10px;
+}
+
+.menu__sublist {
+    list-style-type: disc;
+    padding: 10px 30px;
+}
+
+.menu__subitem {
+    padding-bottom: 5px;
+
+}
+
+.menu__time {
+    display: flex;
+    padding-top: 5px;
+    font-size: 13px;
+    color: #666666;
+}
+
+.menu__time::before {
+    content: " ";
+    background : url(images/clock.png) no-repeat;
+    width: 12px;
+    height: 12px;
+    display: block;
+    background-size: cover;
+    margin-top: 2px;
+    margin-right: 5px;
+}
+
+.top__line {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 5px;
+    background: rgb(33, 50, 199);
+    z-index: 10000;
+}
+
+.menu__wrapper {
+    width: 20%;
+    background: rgb(238, 250, 255);
+    padding: 25px 20px 50px;
+    position: fixed;
+    left: 0;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.menu__summary {
+    color: #666666;
+    font-size: 12px;
+}
+
+.menu__title {
+    background: rgb(206, 245, 255);
+    padding: 30px 25px;
+    margin: 20px 0;
+    border-top: 1px solid rgb(33, 50, 199);
+    border-bottom: 1px solid rgb(33, 50, 199);
+    border-left: 7px solid rgb(33, 50, 199);
+    font-size: 20px;
+
+}
+
+.menu__line {
+    height: 2px;
+    background: #c0c0c0;
+    display: block;
+    margin: 20px 0;
+    margin-left: -20px;
+}
+
+.arrow__down {
+    width: 30px;
+    padding-top: 3px;
+    margin-left: 15px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+._up {
+    transform: rotate(180deg);
+}
