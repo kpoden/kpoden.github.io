@@ -1,6 +1,9 @@
 $(document).ready(function () {
 
-    localStorage.clear();
+    localStorage.removeItem('b24-form-field-stored-values');
+
+
+
 
     var swiper = new Swiper(".mySwiper", {
         slidesPerView: 1,
@@ -19,7 +22,6 @@ $(document).ready(function () {
             prevEl: ".swiper-button-prev",
         },
     });
-
 
     ymaps.ready(function makeMap() {
 
@@ -283,11 +285,28 @@ $(document).ready(function () {
                             const id = document.querySelector('[data-id]').getAttribute('data-id');
                             const targetLikeBtn = e.closest('.like__wrap');
                             let countLikes = +targetLikeBtn.nextSibling.textContent;
+                            const userLikesJson = localStorage.getItem('userInfo');
+
+
 
                             if (targetLikeBtn.classList.contains('liked')) {
                                 targetLikeBtn.classList.remove('liked');
 
+                                if (userLikesJson) {
+                                    const userLikes = JSON.parse(userLikesJson);
+
+                                    for (let i = 0; i < userLikes.length; i++) {
+                                        if (userLikes[i].id === id) {
+                                            userLikes.splice(i, 1);
+                                        }
+                                        writeToLocalStorage(userLikes);
+                                    }
+                                }
+
+
+
                                 if(targetLikeBtn.getAttribute('data-reaction') == 'like') {
+
                                     sendLike({
                                         "state": "unset",
                                         "id": id,
@@ -305,17 +324,22 @@ $(document).ready(function () {
                                 targetLikeBtn.nextSibling.textContent = countLikes;
 
                             } else {
+                                undoLikes(id);
                                 cleanLikes(likeBtn);
+
                                 targetLikeBtn.classList.add('liked');
 
 
+
                                 if(targetLikeBtn.getAttribute('data-reaction') == 'like') {
+                                    personalizeReaction(id, 'like');
                                     sendLike({
                                         "state": "set",
                                         "id": id,
                                         "reaction": "like"
                                     });
                                 } else {
+                                    personalizeReaction(id, 'dislike');
                                     sendLike({
                                         "state": "set",
                                         "id": id,
@@ -332,11 +356,39 @@ $(document).ready(function () {
                     })
                 }
 
+                //Функция снимает класс лайка со всех кнопок, при клике по ним, для обновления
                 function cleanLikes(likeBtn) {
                     likeBtn.forEach((e) => {
                         e.classList.remove('liked');
                     });
 
+                }
+
+                // Функция, которая при клике по другой кнопке, снимает лайк с первой
+                function undoLikes(id) {
+                    const reactions = document.querySelector('.reactions');
+                    const liked = reactions.querySelector('.liked');
+                    if(liked) {
+                        const usedBtn = reactions.querySelector(".like__wrap.liked");
+                        let countLikes = +usedBtn.nextSibling.textContent;
+                        countLikes -= 1;
+                        usedBtn.nextSibling.textContent = countLikes;
+
+                        if(usedBtn.getAttribute('data-reaction') == 'like') {
+
+                            sendLike({
+                                "state": "unset",
+                                "id": id,
+                                "reaction": "like"
+                            });
+                        } else {
+                            sendLike({
+                                "state": "unset",
+                                "id": id,
+                                "reaction": "dislike"
+                            });
+                        }
+                    }
                 }
 
                 function sendLike(data) {
@@ -346,7 +398,7 @@ $(document).ready(function () {
                         dataType: "JSON",
                         data: data,
                         success: function (data) {
-                            console.log(data);
+                            //console.log(data);
                             // formObjects(data);
                         },
                         error: function (jqXHR, exception) {
@@ -370,6 +422,56 @@ $(document).ready(function () {
 
                 }
 
+                function personalizeReaction(id, reaction) {
+
+                    let newObj = true;
+                    const reactionInfo = {
+                        id,
+                        reaction
+                    };
+
+                    if (!localStorage.getItem('userInfo')) {
+                        localStorage.setItem('userInfo', "[]");
+                    }
+
+                    const existingUserJson = localStorage.getItem('userInfo');
+
+                    let existingUserInfo = JSON.parse(existingUserJson);
+
+
+                    if (existingUserInfo.length) {
+                        for (let i = 0; i < existingUserInfo.length; i++) {
+
+                            if (existingUserInfo[i].id == id) {
+                                existingUserInfo[i].reaction = reaction;
+                                newObj = false;
+                                break;
+                            }
+                        }
+
+                    } else {
+                        existingUserInfo.push(reactionInfo);
+                        newObj = false;
+                    }
+                    if (newObj) {
+                        existingUserInfo.push(reactionInfo);
+                    }
+                            writeToLocalStorage(existingUserInfo);
+
+
+                    }
+
+
+                function writeToLocalStorage(data) {
+
+                    let userJson = JSON.stringify(data);
+                    localStorage.setItem('userInfo', userJson);
+
+                }
+                function readUserData() {
+
+                }
+
 
 
                 sMap.geoObjects.events.add("click", function (e) {
@@ -378,10 +480,6 @@ $(document).ready(function () {
 
                     const object = e.get("target");
                     const objectId = e.get('objectId');
-                    console.log(object);
-                    const url = window.location.href.split("?")[0];
-                    const countElementsObj = Object.keys(object._overlaysById).length;
-                    console.log(countElementsObj);
 
                     if (object.options._parent._name == "clusterCollection") {
                         console.log('cluster');
@@ -397,11 +495,29 @@ $(document).ready(function () {
                         const obj__desc = document.querySelector('.panel .obj__desc');
                         obj__desc.innerHTML = data__desc;
 
+                        const userLikesJson = localStorage.getItem('userInfo');
+                        const id = document.querySelector('[data-id]').getAttribute('data-id');
+
+                        if (userLikesJson) {
+                            const userLikes = JSON.parse(userLikesJson);
+
+                            for (let i = 0; i < userLikes.length; i++) {
+                                if (userLikes[i].id === id) {
+                                    if (userLikes[i].reaction == 'like') {
+                                        document.querySelector('[data-reaction="like"]').classList.add('liked');
+                                    } else {
+                                        document.querySelector('[data-reaction="dislike"]').classList.add('liked');
+                                    }
+
+                                }
+                            }
+                        }
+
+
                         panel.classList.add('active');
                         blackBg.classList.add('active');
                         images = object._overlaysById[objectId]._data.properties.images;
                         const likeBtn = document.querySelectorAll('.like__wrap');
-                        console.log(likeBtn);
                         liked(likeBtn);
                         // Передаем массив из кастомного свойства в функцию генерации слайдера
                         generateSlider(images);
