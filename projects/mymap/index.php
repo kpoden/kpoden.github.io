@@ -68,7 +68,11 @@
 
                 <h2 class="obj__name">Название</h2>
                 <div class="obj__desc">Описание</div>
-            </div>
+                <div class="share">
+                    <p>Поделитесь интересными объектами с друзьями!</p>
+                    <script src="https://yastatic.net/share2/share.js"></script>
+                    <div class="ya-share2" data-curtain data-size="l" data-shape="round" data-limit="0" data-more-button-type="short" data-services="vkontakte,odnoklassniki,telegram,viber,whatsapp"></div>
+
         </div>
 
 

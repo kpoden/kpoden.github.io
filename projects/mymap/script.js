@@ -2,6 +2,30 @@ $(document).ready(function () {
 
     localStorage.removeItem('b24-form-field-stored-values');
 
+    const center = [55.15336493240549, 61.39170200000001];
+
+
+
+    function getQueryVar(variable) {
+        let queryArr = [];
+        location.search
+            .substring(1)
+            .split('&')
+            .forEach((item)=> {
+                let param = item.split('=');
+                queryArr[param[0]] = param[1];
+                }
+            );
+        return queryArr[variable];
+
+    }
+
+    const urlObjID = getQueryVar('id');
+
+
+
+
+
 
 
 
@@ -32,7 +56,7 @@ $(document).ready(function () {
 
 
             const sMap = new ymaps.Map("sMap", {
-                    center: [55.15336493240549, 61.39170200000001],
+                    center: center,
                     zoom: 11,
                     controls: ["zoomControl", "geolocationControl", "searchControl"]
                 }),
@@ -153,7 +177,7 @@ $(document).ready(function () {
 
                         let listContentStr =
                             "<span style=\"display: none\" data-id=" + objId +"></span>" +
-                            "<div><div class=\"desc__meta-block\">" +
+                            "<div class=\"desc-bg\"><div class=\"desc__meta-block\">" +
                             "<div class=\"desc__submeta-block\">" +
                             "<svg class = \"panel__icon address_icon\">\n" +
                             "   <use xlink:href=\"#address\"></use>\n" +
@@ -187,6 +211,7 @@ $(document).ready(function () {
                             "</svg>\n" +
                             desc +
                             "</div>" +
+                            "<div class=\"panel-bottom\">" +
                             "<div class=\"reactions\">" +
                             "<div class=\"like__wrap\" data-reaction = \"like\">\n" +
                             "<svg class=\"like__icon\">\n" +
@@ -204,7 +229,9 @@ $(document).ready(function () {
                             "<p class=\"countLikes dislikedNum\">" +
                             likes[1] +
                             "</p>" +
-                            "</div></div>";
+                            "</div>" +
+                            "</div>" +
+                            "</div>";
 
 
                         // Функция генерации слайдера для объекта из массива URL полученного из JSON
@@ -240,7 +267,7 @@ $(document).ready(function () {
 
                         objectManager.add({
                                 type: 'Feature',
-                                id: id,
+                                id: objId,
                                 geometry: {
                                     type: "Point",
                                     coordinates: coords,
@@ -260,7 +287,19 @@ $(document).ready(function () {
                                 },
                             }
                         )
-                        id++;
+
+
+                        if (urlObjID == objId) {
+
+                            const obj = objectManager.objects._objectsById[objId];
+
+                            sMap.setCenter(obj.geometry.coordinates);
+                            sMap.setZoom(17);
+
+                            formObjectFromUrl(obj);
+
+                        }
+
                     }
                 }
 
@@ -468,8 +507,45 @@ $(document).ready(function () {
                     localStorage.setItem('userInfo', userJson);
 
                 }
-                function readUserData() {
 
+
+
+                function formObjectFromUrl(object) {
+                    const data__name = object.properties.balloonContentHeader;
+                    console.log(data__name);
+                    const obj__name = document.querySelector('.panel .obj__name');
+                    obj__name.innerHTML = data__name;
+
+                    const data__desc = object.properties.balloonContentFooter;
+                    const obj__desc = document.querySelector('.panel .obj__desc');
+                    obj__desc.innerHTML = data__desc;
+
+                    const userLikesJson = localStorage.getItem('userInfo');
+                    const id = document.querySelector('[data-id]').getAttribute('data-id');
+
+                    if (userLikesJson) {
+                        const userLikes = JSON.parse(userLikesJson);
+
+                        for (let i = 0; i < userLikes.length; i++) {
+                            if (userLikes[i].id === id) {
+                                if (userLikes[i].reaction == 'like') {
+                                    document.querySelector('[data-reaction="like"]').classList.add('liked');
+                                } else {
+                                    document.querySelector('[data-reaction="dislike"]').classList.add('liked');
+                                }
+
+                            }
+                        }
+                    }
+
+
+                    panel.classList.add('active');
+                    blackBg.classList.add('active');
+                    images = object.properties.images;
+                    const likeBtn = document.querySelectorAll('.like__wrap');
+                    liked(likeBtn);
+                    // Передаем массив из кастомного свойства в функцию генерации слайдера
+                    generateSlider(images);
                 }
 
 
@@ -497,6 +573,8 @@ $(document).ready(function () {
 
                         const userLikesJson = localStorage.getItem('userInfo');
                         const id = document.querySelector('[data-id]').getAttribute('data-id');
+
+                        history.pushState(null, null, '?' + 'id=' + objectId);
 
                         if (userLikesJson) {
                             const userLikes = JSON.parse(userLikesJson);
@@ -538,6 +616,7 @@ $(document).ready(function () {
                 function hidePanel() {
                     panel.classList.remove('active');
                     blackBg.classList.remove('active');
+                    history.pushState(null, null, window.location.pathname);
                     clearSlider();
                 }
 
