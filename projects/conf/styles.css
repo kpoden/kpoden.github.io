@@ -1,0 +1,154 @@
+* {
+    font-family: Roboto, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(255, 254, 240);
+}
+
+.container {
+    max-width: 1360px;
+    min-width: 300px;
+    
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.main__header {
+    padding-top: 3em;
+    padding-bottom: 2em;
+    text-align: center;
+}
+
+.prog__left {
+    display: flex;
+    align-items: center;
+}
+
+.prog__list {
+
+}
+.prog__item {
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 695px) {
+    .prog__item {
+        flex-direction: column;
+        margin-right: 50px;
+    }
+}
+
+.prog__time {
+    padding: 10px 15px;
+    background: rgb(0, 173, 14);
+    color: #fff;
+    font-weight: 700;
+
+}
+.prog__divider {
+    flex: 0.5;
+    height: 1px;
+    background: rgb(68, 68, 68);
+    margin: 0 0;
+    position: relative;
+    min-width: 40px;
+    width: 12vw;
+}
+
+.prog__divider-circle {
+    position: absolute;
+    display: block;
+    height: 15px;
+    width: 15px;
+    border: 5px solid rgb(0, 173, 14);
+    background: rgb(255, 255, 255);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+
+.prog__speaker-list {
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.prog__speaker {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.prog__speaker:nth-child(2) {
+    position: absolute;
+    left: 40%;
+}
+
+@media (max-width: 695px) {
+    .prog__speaker-list {
+        display: flex;
+        position: relative;
+        align-items: center;
+    }
+    
+    .prog__speaker {
+        width: 130px;
+        height: 130px;
+    }
+}
+
+.prog__speaker img {
+    height: 100%;
+    background-size: cover;
+
+
+}
+
+.prog__anounce {
+    margin-left: 80px;
+}
+
+@media (max-width: 695px) {
+    .prog__anounce {
+        padding-left: 50px;
+        margin: 0 auto;
+    }
+}
+
+.anounce {
+    padding-top: 40px;
+    padding-bottom: 80px;
+
+}
+.anounce-title {
+    color: rgb(0, 173, 14);
+    text-decoration: underline;
+    padding-bottom: 10px;
+
+}
+.anounce-subtitle {
+    color: rgb(0, 173, 14);
+    padding-bottom: 20px;
+    width: 90%;
+    line-height: 1.5;
+}
+.anounce-list {
+    padding-left: 3em;
+    width:90%;
+}
+.anounce-item {
+    padding-bottom: 18px;
+
+}
+.anounce__credits {
+    font-weight: 700;
+    line-height: 1.6;
+}
