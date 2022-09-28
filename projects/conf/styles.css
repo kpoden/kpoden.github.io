@@ -132,6 +132,7 @@ body {
     color: rgb(0, 173, 14);
     text-decoration: underline;
     padding-bottom: 10px;
+    font-size: 1.2em;
 
 }
 .anounce-subtitle {
@@ -139,6 +140,7 @@ body {
     padding-bottom: 20px;
     width: 90%;
     line-height: 1.5;
+    font-size: 1.3em;
 }
 .anounce-list {
     padding-left: 3em;
