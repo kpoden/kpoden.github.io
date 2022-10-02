@@ -1,0 +1,219 @@
+<!DOCTYPE html >
+<html lang="ru-RU">
+  <head> 
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="stylesheet" href="styles/app.css"/>
+    <link rel="stylesheet" href="libs/air-datepicker.css"/>
+    <title>Златоустовское телевидение</title>
+  </head>
+  <body></body>
+  <header class="header container">
+    <div class="header__top">
+      <button class="btn header__top-btn">Предложить новость</button>
+      <div class="header__top-right"><a class="header__top-phone" href="tel:8(3513)65-17-11">8(3513)65-17-11</a><span class="header__top-search">
+          <svg>
+            <use xlink:href="images/sprite.svg#search"> </use>
+          </svg></span></div>
+    </div>
+    <div class="header__bottom">
+      <nav class="header__menu menu">
+        <div class="menu__mob"><span class="menu__mob-line"></span><span class="menu__mob-line"></span><span class="menu__mob-line"></span></div>
+        <ul class="menu__list">
+          <li class="menu__item"> <a href="#">Новости</a></li>
+          <li class="menu__item"><a href="#">Телепроекты</a></li>
+          <li class="menu__item"> <a href="#">Реклама</a></li>
+          <li class="menu__item more"> <a href="#">Онлайн
+              <ul class="menu__sublist">
+                <li class="menu__subitem">Эфиры</li>
+                <li class="menu__subitem">Трансляции</li>
+                <li class="menu__subitem">Камеры города</li>
+              </ul></a></li>
+          <li class="menu__item"> <a href="#">Программа передач</a></li>
+          <li class="menu__item more"> <a href="#">Еще
+              <ul class="menu__sublist">
+                <li class="menu__subitem">Команда</li>
+                <li class="menu__subitem">Контакты</li>
+                <li class="menu__subitem">Лицензия</li>
+              </ul></a></li>
+        </ul>
+      </nav>
+      <div class="header__subscribe subscribe"><span class="subscribe__text">Подписывайтесь на нас:</span>
+        <div class="subscribe__icons"><span> <a href="#">
+              <svg style="padding-top: 3px;">
+                <use xlink:href="images/sprite.svg#yt"></use>
+              </svg></a></span><span> <a href="#">
+              <svg>
+                <use xlink:href="images/sprite.svg#fb"></use>
+              </svg></a></span><span> <a href="#">
+              <svg style="padding-top: 3px;">
+                <use xlink:href="images/sprite.svg#vk"></use>
+              </svg></a></span><span> <a href="#">
+              <svg>
+                <use xlink:href="images/sprite.svg#ok"></use>
+              </svg></a></span><span> <a href="#">
+              <svg>
+                <use xlink:href="images/sprite.svg#ig"></use>
+              </svg></a></span></div>
+      </div>
+    </div>
+  </header>
+  <main class="news container">
+    <div class="news__title">Все новости</div>
+    <div class="news__breadcrumbs">Главная / Новости</div>
+    <div class="news__filter">
+      <div class="news__calendar">
+        <svg class="cal-icon">
+          <use xlink:href="images/sprite.svg#cal"> </use>
+        </svg>
+        <input id="calendar" type="text" value=""/>
+      </div>
+      <div class="news__category category">
+        <div class="category__header more"><span class="category__current">Выбрать рубрику</span></div>
+        <div class="category__body">
+          <div class="category__item">Медицина</div>
+          <div class="category__item disabled-item">Общество </div>
+          <div class="category__item">Коммуналка</div>
+          <div class="category__item">Политика</div>
+          <div class="category__item">Спорт</div>
+          <div class="category__item disabled-item">Вектор развития</div>
+        </div>
+      </div>
+    </div>
+    <section class="news__list">
+      <div class="news__item">
+        <div class="news__item-img"><a href="news-detailed.html" target="_blank"><img src="images/news/news-1.png" alt="Картинка для анонса"/></a></div>
+        <div class="news__item-info">
+          <div class="news__item-meta">
+            <div class="news__item-tags"><span class="news__item-tag">Медицина </span><span class="news__item-tag">Общество</span></div>
+            <div class="news__item-date">02/02/2021</div>
+          </div>
+          <div class="news__item-title">Благодаря поддержке предпринимателей. Златоустовские поликлиники оснастили холодильными установками для хранения вакцины</div><a class="news__item-link" href="news-detailed.html" target="_blank">
+            <svg class="ext-arrow">
+              <use xlink:href="images/sprite.svg#ext"> </use>
+            </svg></a>
+        </div>
+      </div>
+      <div class="news__item">
+        <div class="news__item-img"><a href="news-detailed.html" target="_blank"><img src="images/news/news-2.png" alt="Картинка для анонса"/></a></div>
+        <div class="news__item-info">
+          <div class="news__item-meta">
+            <div class="news__item-tags"><span class="news__item-tag">Медицина </span></div>
+            <div class="news__item-date">02/02/2021</div>
+          </div>
+          <div class="news__item-title">Госпитальная база закрыта, учреждение вернётся в «доковидный» режим после дезинфекции.  Роддом Златоуста вновь откроет свои двери 8 февраля</div><a class="news__item-link" href="news-detailed.html" target="_blank">
+            <svg class="ext-arrow">
+              <use xlink:href="images/sprite.svg#ext"> </use>
+            </svg></a>
+        </div>
+      </div>
+      <div class="news__item">
+        <div class="news__item-img"><a href="news-detailed.html" target="_blank"><img src="images/news/news-3.png" alt="Картинка для анонса"/></a></div>
+        <div class="news__item-info">
+          <div class="news__item-meta">
+            <div class="news__item-tags"><span class="news__item-tag">Коммуналка </span></div>
+            <div class="news__item-date">02/02/2021</div>
+          </div>
+          <div class="news__item-title">Осторожно, сосульки! Оттепель на этой неделе привела к тому, что на крышах многих домов образовались опасные ледяные наросты</div><a class="news__item-link" href="news-detailed.html" target="_blank">
+            <svg class="ext-arrow">
+              <use xlink:href="images/sprite.svg#ext"> </use>
+            </svg></a>
+        </div>
+      </div>
+      <div class="news__item">
+        <div class="news__item-img"><a href="news-detailed.html" target="_blank"><img src="images/news/news-4.png" alt="Картинка для анонса"/></a></div>
+        <div class="news__item-info">
+          <div class="news__item-meta">
+            <div class="news__item-tags"><span class="news__item-tag">Политика</span></div>
+            <div class="news__item-date">02/02/2021</div>
+          </div>
+          <div class="news__item-title">В четыре раза меньше вопросов, чем обычно. В Златоусте прошло первое в 2021-м году Собрание депутатов</div><a class="news__item-link" href="news-detailed.html" target="_blank">
+            <svg class="ext-arrow">
+              <use xlink:href="images/sprite.svg#ext"> </use>
+            </svg></a>
+        </div>
+      </div>
+      <div class="news__item">
+        <div class="news__item-img"><a href="news-detailed.html" target="_blank"><img src="images/news/news-5.png" alt="Картинка для анонса"/></a></div>
+        <div class="news__item-info">
+          <div class="news__item-meta">
+            <div class="news__item-tags"><span class="news__item-tag">Коммуналка </span></div>
+            <div class="news__item-date">02/02/2021</div>
+          </div>
+          <div class="news__item-title">В Златоусте сотрудники теротдела проверят магазин, из которого выбрасывали строительный мусор на контейнерную площадку</div><a class="news__item-link" href="news-detailed.html" target="_blank">
+            <svg class="ext-arrow">
+              <use xlink:href="images/sprite.svg#ext"> </use>
+            </svg></a>
+        </div>
+      </div>
+      <div class="news__item">
+        <div class="news__item-img"><a href="news-detailed.html" target="_blank"><img src="images/news/news-6.png" alt="Картинка для анонса"/></a></div>
+        <div class="news__item-info">
+          <div class="news__item-meta">
+            <div class="news__item-tags"><span class="news__item-tag">Общество </span></div>
+            <div class="news__item-date">02/02/2021</div>
+          </div>
+          <div class="news__item-title">ДЧ: Первое Собрание депутатов 2021 года: планируется работа на весь год</div><a class="news__item-link" href="news-detailed.html" target="_blank">
+            <svg class="ext-arrow">
+              <use xlink:href="images/sprite.svg#ext"> </use>
+            </svg></a>
+        </div>
+      </div>
+      <div class="news__item wide-anounce">
+        <div class="news__item-img"><a href="news-detailed.html" target="_blank"><img src="images/news/news-2.png" alt="Картинка для анонса"/></a></div>
+        <div class="news__item-info">
+          <div class="news__item-meta">
+            <div class="news__item-tags"><span class="news__item-tag">Медицина </span></div>
+            <div class="news__item-date">02/02/2021</div>
+          </div>
+          <div class="news__item-title">Госпитальная база закрыта, учреждение вернётся в «доковидный» режим после дезинфекции.  Роддом Златоуста вновь откроет свои двери 8 февраля</div>
+          <div class="news__text">Ещё одна главная новость дня — с 8 февраля златоустовский роддом возвращается к привычному формату работы. Госпитальную базу для лечения больных коронавирусной инфекцией переводят...</div><a class="news__item-link" href="news-detailed.html" target="_blank">
+            <svg class="ext-arrow">
+              <use xlink:href="images/sprite.svg#ext"></use>
+            </svg></a>
+        </div>
+      </div>
+    </section>
+    <div class="news__nav">
+      <div class="news__nav-arrow left"><a href="#">
+          <svg class="ext-arrow inactive">
+            <use xlink:href="images/sprite.svg#nav-arr-l"></use>
+          </svg></a></div>
+      <div class="news__nav-numbers"><span class="news__nav-number active"><a href="#">1</a></span><span class="news__nav-number"> <a href="#">2</a></span><span class="news__nav-number"><a href="#">3</a></span><span class="news__nav-number"> <a href="#">4</a></span><span class="news__nav-number">...</span><span class="news__nav-number"> <a href="#">123</a></span></div>
+      <div class="news__nav-arrow right"><a href="#">
+          <svg class="ext-arrow">
+            <use xlink:href="images/sprite.svg#nav-arr-r"></use>
+          </svg></a></div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="footer__subscribe subscribe container"><span class="subscribe__text">Подписывайтесь на нас:</span>
+      <div class="subscribe__icons"><span> <a href="#">
+            <svg style="padding-top: 3px;">
+              <use xlink:href="images/sprite.svg#yt"></use>
+            </svg></a></span><span> <a href="#">
+            <svg>
+              <use xlink:href="images/sprite.svg#fb"></use>
+            </svg></a></span><span> <a href="#">
+            <svg style="padding-top: 3px;">
+              <use xlink:href="images/sprite.svg#vk"></use>
+            </svg></a></span><span> <a href="#">
+            <svg>
+              <use xlink:href="images/sprite.svg#ok"></use>
+            </svg></a></span><span> <a href="#">
+            <svg>
+              <use xlink:href="images/sprite.svg#ig"></use>
+            </svg></a></span></div>
+    </div>
+    <div class="footer__bottom container">
+      <div class="footer__credits"><span class="footer__copyright">© 2021 «Златоустовское телевидение»</span><span class="footer__politics"> <a href="#">Политика конфиденциальности</a></span></div>
+      <div class="footer__xpage"><span> <a href="https://www.xpage.ru/" target="_blank">
+            <svg>
+              <use xlink:href="images/sprite.svg#xpage"></use>
+            </svg></a></span></div>
+    </div>
+  </footer>
+  <script src="libs/air-datepicker.js"> </script>
+  <script src="scripts/main.js"> </script>
+</html>
