@@ -2,6 +2,18 @@ $(document).ready(function () {
 
     localStorage.removeItem('b24-form-field-stored-values');
 
+    let newUser = true;
+
+    const welcomeWindow = document.querySelector(".welcome__window"),
+                          closeWelcome = welcomeWindow.querySelector(".close"),
+                          closeWelcomeBtn = welcomeWindow.querySelector(".close__welcomeBtn");
+
+    if(!localStorage.getItem('visitCount')) {
+        localStorage.setItem('visitCount', 1);
+    };
+
+
+
     const center = [55.15336493240549, 61.39170200000001];
 
 
@@ -22,6 +34,21 @@ $(document).ready(function () {
 
     const urlObjID = getQueryVar('id');
 
+
+    function createSocLinks() {
+        const socLinks = document.querySelectorAll('.share__link');
+        socLinks.forEach((el)=>{
+            el.addEventListener("click", function(e) {
+                e = e.target;
+                e.preventDefault;
+                const baseLink = el.getAttribute("data-ref");
+                const link = baseLink + location.href;
+                window.open(link, '_blank', "width=600, height=600");
+            })
+        })
+
+    }
+    createSocLinks();
 
 
 
@@ -229,7 +256,6 @@ $(document).ready(function () {
                             "<p class=\"countLikes dislikedNum\">" +
                             likes[1] +
                             "</p>" +
-                            "</div>" +
                             "</div>" +
                             "</div>";
 
@@ -606,10 +632,12 @@ $(document).ready(function () {
                 // Очищаем слайдер и убираем панель и темный фон
                 blackBg.addEventListener('click', () => {
                     hidePanel();
+                    
                 });
 
                 close.addEventListener('click', () => {
                     hidePanel();
+                    
                 });
 
 
@@ -619,6 +647,32 @@ $(document).ready(function () {
                     history.pushState(null, null, window.location.pathname);
                     clearSlider();
                 }
+
+                function closeWelcomeWindow() {
+                                       
+                    blackBg.addEventListener('click', () => {
+                        welcomeWindow.classList.add('hidden');
+                    });
+                    closeWelcome.addEventListener('click', () => {
+                        welcomeWindow.classList.remove('shown');
+                        welcomeWindow.classList.add('hidden');
+                    });
+
+                    closeWelcomeBtn.addEventListener('click', () => {
+                        welcomeWindow.classList.remove('shown');
+                        welcomeWindow.classList.add('hidden');
+                    });
+                }
+
+                function openWelcomeWindow() {
+                    if(localStorage.getItem('visitCount')==1) {
+                        welcomeWindow.classList.add('shown');
+                        welcomeWindow.classList.remove('hidden');
+                    }
+                 }
+
+                closeWelcomeWindow();
+                setTimeout(openWelcomeWindow(), 1000)
 
 
                 let clusterer = new ymaps.Clusterer({

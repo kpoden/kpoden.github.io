@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyMap</title>
+    <title>Ваша любимая карта!</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
@@ -22,7 +22,6 @@
 
 <body>
 <div class="container">
-
 
 
     <div class="black-bg"></div>
@@ -68,11 +67,25 @@
 
                 <h2 class="obj__name">Название</h2>
                 <div class="obj__desc">Описание</div>
-                <div class="share">
-                    <p>Поделитесь интересными объектами с друзьями!</p>
-                    <script src="https://yastatic.net/share2/share.js"></script>
-                    <div class="ya-share2" data-curtain data-size="l" data-shape="round" data-limit="0" data-more-button-type="short" data-services="vkontakte,odnoklassniki,telegram,viber,whatsapp"></div>
 
+            </div>
+            <div class="share">
+                <p>Поделитесь интересными объектами с друзьями!</p>
+                <div class="share__links">
+                    <span class="share__link" data-ref="https://t.me/share/url?url=">
+                        <img src="images/soc_icons/tg.webp" alt="">
+                    </span>
+                    <span class="share__link" data-ref="https://api.whatsapp.com/send?text=">
+                        <img src="images/soc_icons/wa.png" alt="">
+                    </span>
+                    <span class="share__link" data-ref="https://vk.com/share.php?url=">
+                        <img src="images/soc_icons/vk.png" alt="">
+                    </span>
+                    <span class="share__link" data-ref="https://connect.ok.ru/offer?url=">
+                        <img src="images/soc_icons/odn.png" alt="">
+                    </span>
+                </div>
+            </div>
         </div>
 
 
@@ -117,6 +130,18 @@
                 <span class="filter__text">Обычная</span>
             </label>
         </div>
+    </div>
+
+    <div class="welcome__window hidden">
+    <span class="close">&times</span>
+        <div class="welcome__inner">
+            <h1 class="welcome__header">Добро пожаловать, путник!</h1>
+            <h2 class="welcome__subheader">Приветствую тебя, добрый путник!</h2>
+            <p class="welcome__paragraph">Добро пожаловать на интерактивную карту города, где Вы сами сможете добавлять свои отметки с любимыми или не самыми любимыми местами!</p>
+
+            <p class="welcome__paragraph">Так же Вы можете делиться интересными объектами со своими друзьями и знакомыми, оставлять лайки или дизлайки объектам, добавленным другими пользователями.</p>
+        </div>
+        <span class="close__welcomeBtn">Закрыть</span>
     </div>
 
     <svg style="display:none">
@@ -187,9 +212,6 @@
         </symbol>
 
 
-
-
-
         <symbol version="1.1" id="construct" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -254,10 +276,9 @@
         </symbol>
 
 
-
-
-        <symbol version="1.1" id="donut" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                             viewBox="0 0 83.13 83.13" enable-background="new 0 0 83.13 83.13" xml:space="preserve">
+        <symbol version="1.1" id="donut" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px" y="0px"
+                viewBox="0 0 83.13 83.13" enable-background="new 0 0 83.13 83.13" xml:space="preserve">
                 <g id="_x39_">
                     <g>
                         <path fill="#E7AE76" d="M5.76,46.23c0.13,1.06,0.32,2.11,0.55,3.15c0.21,0.96,0.47,1.92,0.76,2.87
@@ -398,26 +419,28 @@
             </symbol>
 
 
-        <symbol version="1.1" id="like" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-             viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+        <symbol version="1.1" id="like" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px" y="0px"
+                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
             <path style="fill:#FFDAB3;" d="M363.965,56.475c0-27.538-21.881-50.542-49.416-50.905c-26.562-0.349-48.515,20.086-50.573,46.047
                 c-10.743,49.396-34.276,65.225-120.774,154.295l-26.332,0.003c-9.18,0-16.696,7.477-16.696,16.696v233.739
                 c0,9.219,7.474,16.693,16.693,16.693h294.959c37.53-0.022,62.793-40.435,43.4-74.637c21.714-13.764,30.639-42.193,16.696-66.783
                 c21.714-13.764,30.639-42.193,16.696-66.783c14.01-8.88,23.371-24.411,23.383-42.23c-0.018-27.668-22.419-50.07-50.087-50.087
                 H340.38C354.225,130.991,363.965,100.955,363.965,56.475L363.965,56.475z"/>
-                        <path style="fill:#32BBFF;" d="M116.87,172.523H16.696C7.515,172.523,0,180.001,0,189.219v300.522
+            <path style="fill:#32BBFF;" d="M116.87,172.523H16.696C7.515,172.523,0,180.001,0,189.219v300.522
                 c0,9.214,7.482,16.693,16.696,16.693H116.87c9.214,0,16.696-7.48,16.696-16.693V189.219
                 C133.565,180.001,126.05,172.523,116.87,172.523z"/>
-                        <path style="fill:#2C9FD9;" d="M116.87,172.523H66.783v333.911h50.087c9.214,0,16.696-7.482,16.696-16.693V189.219
+            <path style="fill:#2C9FD9;" d="M116.87,172.523H66.783v333.911h50.087c9.214,0,16.696-7.482,16.696-16.693V189.219
                 C133.565,180.001,126.049,172.523,116.87,172.523z"/>
-                        <path style="fill:#FFC3A6;" d="M461.913,172.523h-27.826l-300.52,300.519h278.259c37.53-0.022,62.793-40.435,43.4-74.637
+            <path style="fill:#FFC3A6;" d="M461.913,172.523h-27.826l-300.52,300.519h278.259c37.53-0.022,62.793-40.435,43.4-74.637
                 c21.714-13.764,30.639-42.193,16.696-66.783c21.714-13.764,30.639-42.193,16.696-66.783c14.01-8.88,23.371-24.411,23.383-42.23
                 C511.981,194.942,489.581,172.54,461.913,172.523z"/>
 
             </symbol>
 
-        <symbol version="1.1" id="like1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-             viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+        <symbol version="1.1" id="like1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px" y="0px"
+                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
             <g>
                 <g>
                     <path d="M512,304.021c0-12.821-5.099-24.768-13.867-33.6c9.963-10.901,15.019-25.536,13.632-40.725
@@ -439,8 +462,6 @@
                 </g>
             </g>
             </symbol>
-
-
 
 
     </svg>
