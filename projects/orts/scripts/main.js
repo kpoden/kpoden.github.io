@@ -6,11 +6,11 @@ var mainSlider = new Swiper(".orts-slider", {
         el: '.main-slider-pagination',
         clickable: true,
         },
-    // autoplay: {
-    //     delay: 3500,
-    //     disableOnInteraction: false,
-    //     pauseOnMouseEnter: true,
-    //     }
+    autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+        }
 });
 
 
@@ -23,11 +23,11 @@ if(bannerCount > 1) {
         el: ".banner-pagination",
         clickable: true
         },
-    // autoplay: {
-    //     delay: 3500,
-    //     disableOnInteraction: false,
-    //     pauseOnMouseEnter: true,
-    //     }
+    autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+        }
 });
 
 }
@@ -43,11 +43,11 @@ if(window.innerWidth < 700) {
         el: ".reviews-pagination",
         clickable: true
         },
-    // autoplay: {
-    //     delay: 3500,
-    //     disableOnInteraction: false,
-    //     pauseOnMouseEnter: true,
-    //     }
+    autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+        }
 });
 
 }
@@ -108,3 +108,44 @@ $('.faq .faq-title').click(function() {
 
     return false;
   });
+
+
+  class MobileMenu {
+    constructor(modalId) {
+      this.mobileMenu = document.getElementById(modalId);
+      this.burger = document.querySelector('.orts-header-burger');
+      this.closeButton = this.mobileMenu.querySelector('.orts-mobile-menu-close');
+      this.overlay = document.querySelector('.overlay-dark');
+      this.isOpen = false;
+      this.closeButton.addEventListener('click', () => this.close());
+      this.overlay.addEventListener('click', () => this.close());
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && this.isOpen) {
+          this.close();
+        }
+      });
+    }
+  
+    open() {
+      this.mobileMenu.classList.add('mob--open');
+      this.overlay.classList.add('overlay--shown');
+      this.isOpen = true;
+    }
+  
+    close() {
+      this.mobileMenu.classList.remove('mob--open');
+      this.overlay.classList.remove('overlay--shown');
+      this.isOpen = false;
+    }
+
+    init() {
+        this.burger.addEventListener('click', () => {
+            console.log('test');
+            this.open();
+        })
+    }
+  }
+  
+    const mobile = new MobileMenu('mobile-menu');
+
+    mobile.init();

@@ -37,18 +37,23 @@
   <!-- подключаем jQuery -->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <!-- ... -->
-  <!-- <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script> -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <!--/assets block-->
 
 </head>
 
 <body>
+  <div class="overlay-dark"></div>
   <div class="orts-page">
     <header class="orts-header-container container">
       <div class="orts-header">
         <div class="orts-header--inner">
+          <div class="orts-header-burger">
+            <svg width="24px" height="24px">
+                <use xlink:href="images/sprite.svg#burger"></use>
+            </svg>
+          </div>
           <a href="/" class="orts-typography-3 orts-header--logo">
             <svg width="90px" height="38px">
               <use xlink:href="images/sprite.svg#logo"></use>
@@ -56,7 +61,7 @@
           </a>
           <nav class="orts-header-menu">
             <ul class="orts-header-menu--list">
-              <li class="orts-header-menu--item"><a href="https://orts.me/"
+              <li class="orts-header-menu--item"><a href="index.html"
                   class="orts-header-menu--link active-link">Главная</a>
               </li>
               <li class="orts-header-menu--item"><a href="services.html"
@@ -72,9 +77,17 @@
                   class="orts-header-menu--link">Контакты</a>
               </li>
             </ul>
-          </nav> <a href="tel:+73517010087" class="orts-typography-3 orts-header--phone-num">
+          </nav> 
+          <a href="tel:+73517010087" class="orts-typography-3 orts-header--phone-num">
             <span class="orts-header--phone-text">+7 351 701-00-87</span>
           </a>
+          <div class="orts-header-phone-mobile">
+            <a href="tel:+73517010087">
+                <svg width="20px" height="20px">
+                    <use xlink:href="images/sprite.svg#phone"></use>
+                </svg>
+            </a>
+        </div>
         </div>
       </div>
     </header>
@@ -671,12 +684,87 @@
         </section>
 
 
+        <!-- Mobile Menu Block -->
+        <div class="orts-mobile-menu" id="mobile-menu">
+
+          <div class="orts-mobile-menu--inner">
+              <span class="orts-mobile-menu-close"></span>
+              <nav class="orts-mobile-menu-menu">
+                  <ul class="orts-mobile-menu--list">
+                      <li class="orts-mobile-menu--item"><a href="index.html"
+                              class="orts-mobile-menu--link">Главная</a>
+                      </li>
+                      <li class="orts-mobile-menu--item"><a href="services.html"
+                              class="orts-mobile-menu--link">Услуги</a>
+                      </li>
+                      <li class="orts-mobile-menu--item"><a href="https://orts.me/staff/"
+                              class="orts-mobile-menu--link">Специалисты</a>
+                      </li>
+                      <li class="orts-mobile-menu--item"><a href="https://orts.me/about-us/"
+                              class="orts-mobile-menu--link">О
+                              клинике</a>
+                      </li>
+                      <li class="orts-mobile-menu--item"><a href="https://orts.me/contacts/"
+                              class="orts-mobile-menu--link">Контакты</a>
+                      </li>
+                  </ul>
+              </nav> 
+              <div class="orts-mobile-menu-bottom">
+                  <a href="tel:+73517010087" class="orts-typography-3 orts-mobile-menu--phone-num">
+                      <span class="orts-mobile-menu--phone-text">+7 351 701-00-87</span>
+                  </a>
+                  <div class="orts-mobile-menu-info">
+                      <div class="orts-mobile-menu-info-row">
+                          <div class="orts-mobile-menu-info-decor">
+                              <svg width="18px" height="21px">
+                                  <use xlink:href="images/sprite.svg#map"></use>
+                              </svg>
+                          </div>
+                          <p class="orts-mobile-menu-info-text">
+                             г. Челябинск, ул. Пушкина д.27А, помещение 14
+                          </p>
+                      </div>
+
+                      <div class="orts-mobile-menu-info-row">
+                          <div class="orts-mobile-menu-info-decor">
+                              <svg width="21px" height="21px">
+                                  <use xlink:href="images/sprite.svg#clock"></use>
+                              </svg>
+                          </div>
+                          <div class="orts-mobile-menu-info-text--wrap">
+                              <p class="orts-mobile-menu-info-text">
+                                  Ждём вас с 9:00 до 21:00 по будням + в субботу
+                              </p>
+                              <p class="orts-mobile-menu-info-text">
+                                  А в воскресенье с 10:00 до 16:00
+                              </p>
+                          </div> 
+                      </div>
+
+                      <div class="orts-mobile-menu-soc">
+                          <p class="orts-mobile-menu-soc-text">Пишите нам, а мы ответим</p>
+                          <div class="orts-mobile-menu-soc-icons">
+                              <a href="#">
+                                  <svg width="43px" height="43px">
+                                      <use xlink:href="images/sprite.svg#vk"></use>
+                                  </svg>
+                              </a>
+                              <a href="#">
+                                  <svg width="41px" height="41px">
+                                      <use xlink:href="images/sprite.svg#wa"></use>
+                                  </svg>
+                              </a>
+                          </div>
+
+                      </div>
+                      <button class="orts-mobile-menu-button btn">Заказать звонок</button>
+                  </div>
+              </div>
+          </div>
+        </div>
 
 
-
-
-      <br><br><br><br><br><br><br><br><br><br><br><br>
-
+      
 
 
 
@@ -696,9 +784,7 @@
   <!-- end of container -->
 
   <!-- <script src="libs/jquery-3.6.0.min.js"></script> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollToPlugin.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="libs/swiper-bundle.min.js"></script>
   <script src="scripts/main.js"></script>
 </body>
