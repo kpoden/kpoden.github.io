@@ -359,7 +359,7 @@
                         <input class="services-main-form-input" type="tel" id="tel" name="tel" placeholder="Номер телефона" onfocus="if (this.placeholder == 'Номер телефона') {this.placeholder = '';}" onblur="if (this.placeholder == '') {this.placeholder = 'Номер телефона';}">
                         
                         <input type="submit" class="services-main-form-button btn" value="Хочу узнать стоимость">
-                      </form>
+                    </form>
 
                 </div>
 
@@ -560,7 +560,30 @@
           </div>
 
           <div class="modal">
+            <div class="modal--wrap">
+                <div class="modal-consultant">
+                    <img src="images/modal/1.png" alt="">
+                </div>
 
+                <div class="modal-form--wrap">
+                    <form class="modal-form" method="post">
+                        <h3 class="modal-form-title--top">Есть вопросы?</h3>
+                        <h3 class="modal-form-title--bottom">Оставьте свой номер и <br> мы вам перезвоним</h3>
+                        <input class="modal-form-input" type="text" id="name" name="name" placeholder="Номер телефона" onfocus="if (this.placeholder == 'Номер телефона') {this.placeholder = '';}" onblur="if (this.placeholder == '') {this.placeholder = 'Номер телефона';}">
+                        
+                        
+                        <input type="submit" class="modal-form-button btn" value="Перезвоните мне">
+
+                        <div class="modal-form-consultant">
+                            <svg width="47px" height="36px">
+                                <use xlink:href="images/sprite.svg#decor-gold"></use>
+                            </svg>
+                            <p class="modal-form-consultant-name"><span class="bolder">Валерия Сотникова </span><br>
+                                ваш координатор лечения</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
           </div>
         </main>
 

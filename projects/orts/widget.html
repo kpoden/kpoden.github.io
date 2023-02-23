@@ -1,0 +1,147 @@
+
+<div class="widget-soc">
+
+    <div class="widget-soc--wrap">
+        <div class="widget-soc-item widget-spoiler closed" style="z-index: 10000;">
+            <a class="widget-soc-link">
+                <svg class="collapsed" width="16px" height="16px">
+                    <use xlink:href="images/sprite2.svg#spoiler"></use>
+                </svg>
+                <svg class="expanded" width="16px" height="16px">
+                    <use xlink:href="images/sprite2.svg#cross"></use>
+                </svg>
+            </a>
+        </div>
+        <div class="widget-soc-item  closed" style="bottom: 50px; ">
+            <a class="widget-soc-link" href="#">
+                <svg width="20px" height="15px">
+                    <use xlink:href="images/sprite2.svg#letter"></use>
+                </svg>
+            </a>
+        </div>
+
+        <div class="widget-soc-item  closed" style="bottom: 100px;">
+            <a class="widget-soc-link" href="tel:+7 991 777-18-85">
+                <svg width="18px" height="18px">
+                    <use xlink:href="images/sprite2.svg#tel"></use>
+                </svg>
+            </a>
+        </div>
+
+        <div class="widget-soc-item  closed" style="bottom: 150px;">
+            <a class="widget-soc-link" href="https://api.whatsapp.com/send?phone=79999672873" target="_blank">
+                <svg width="18px" height="18px">
+                    <use xlink:href="images/sprite2.svg#wa"></use>
+                </svg>
+            </a>
+        </div>
+
+        <div class="widget-soc-item  closed" style="right: 50px;">
+            <a class="widget-soc-link" href="https://vk.com/by_matu?w=club51177405" target="_blank">
+                <svg width="30px" height="18px">
+                    <use xlink:href="images/sprite2.svg#vk"></use>
+                </svg>
+            </a>
+        </div>
+
+        <div class="widget-soc-item  closed" style="right: 100px;">
+            <a class="widget-soc-link" href="https://t.me/by_matu" target="_blank">
+                <svg width="23px" height="20px">
+                    <use xlink:href="images/sprite2.svg#tg"></use>
+                </svg>
+            </a>
+        </div>
+        
+
+    </div>
+</div>
+
+
+
+<style>
+
+    body {
+        background: #000;
+    }
+    .widget-soc {
+        position: fixed;
+        right: 35px;
+        bottom: 35px;
+        min-width: 50px;
+        min-height: 50px;
+    }
+
+    .widget-soc--wrap {
+        
+    }
+
+    .widget-soc-item {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: #F2F2F2;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        transition: .3s;
+        cursor: pointer;
+    }
+
+    .widget-soc-link {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .widget-soc-link svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+    }
+
+    .closed {
+        bottom: 0 !important;
+        right: 0 !important;
+    }
+
+    .closed:not(.widget-spoiler) {
+        opacity: 0;
+    }
+
+    .closed .collapsed {
+        opacity: 1;
+    }
+
+    .closed .expanded {
+        opacity: 0;
+    }
+
+    .expanded {
+        opacity: 1;
+        transition: .1s;
+    }
+
+    .collapsed {
+        opacity: 0;
+        transition: .1s;
+    }
+
+
+</style>
+
+<script>
+    const spoiler = document.querySelector('.widget-spoiler');
+    const widgets = document.querySelectorAll('.widget-soc-item');
+    spoiler.addEventListener('click', () => {
+        widgets.forEach(w => {
+            if(w.classList.contains('closed')) {
+                w.classList.remove('closed');
+            } else {
+                w.classList.add('closed');
+            }
+        })
+    })
+</script>
