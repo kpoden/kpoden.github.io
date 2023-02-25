@@ -140,7 +140,6 @@ $('.faq .faq-title').click(function() {
 
     init() {
         this.burger.addEventListener('click', () => {
-            console.log('test');
             this.open();
         })
     }
@@ -148,4 +147,44 @@ $('.faq .faq-title').click(function() {
   
     const mobile = new MobileMenu('mobile-menu');
 
-    mobile.init();
+    mobile.init(); 
+
+
+    class Modal {
+      constructor(modalId) {
+        this.modal = document.getElementById(modalId);
+        this.closeButton = this.modal.querySelector('.modal-close');
+        this.modalTrigger = document.querySelectorAll('.modal-trigger');
+        this.overlay = document.querySelector('.overlay-dark');
+        this.isOpen = false;
+        this.closeButton.addEventListener('click', () => this.close());
+        this.overlay.addEventListener('click', () => this.close());
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && this.isOpen) {
+            this.close();
+          }
+        });
+      }
+    
+      open() {
+        this.modal.classList.add('opened-modal');
+        this.overlay.classList.add('overlay--shown');
+        this.isOpen = true;
+      }
+    
+      close() {
+        this.modal.classList.remove('opened-modal');
+        this.overlay.classList.remove('overlay--shown');
+        this.isOpen = false;
+      }
+
+      init() {
+        this.modalTrigger.forEach((el) => el.addEventListener('click',() => {
+          this.open();
+        }))
+      }
+    }
+
+    const modal = new Modal('modal');
+
+    modal.init();

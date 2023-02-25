@@ -108,7 +108,7 @@
 
                     <h1 class="services-top-header section-header">Лечение зубов</h1>
                 </div>
-                <div class="services-top-img--wrap">
+                <div class="services-top-img--wrap modal-trigger">
                     <img src="images/services/header-img.png" alt="">
                 </div>
             </section>
@@ -559,17 +559,20 @@
             </div>
           </div>
 
-          <div class="modal">
+
+          <!-- Modal Window Block -->
+          <div class="modal" id="modal" tabindex="-1" role="dialog">
             <div class="modal--wrap">
                 <div class="modal-consultant">
                     <img src="images/modal/1.png" alt="">
                 </div>
+                <div class="modal-close"></div>
 
                 <div class="modal-form--wrap">
                     <form class="modal-form" method="post">
                         <h3 class="modal-form-title--top">Есть вопросы?</h3>
                         <h3 class="modal-form-title--bottom">Оставьте свой номер и <br> мы вам перезвоним</h3>
-                        <input class="modal-form-input" type="text" id="name" name="name" placeholder="Номер телефона" onfocus="if (this.placeholder == 'Номер телефона') {this.placeholder = '';}" onblur="if (this.placeholder == '') {this.placeholder = 'Номер телефона';}">
+                        <input class="modal-form-input" type="tel" id="tel" name="tel" placeholder="Номер телефона" onfocus="if (this.placeholder == 'Номер телефона') {this.placeholder = '';}" onblur="if (this.placeholder == '') {this.placeholder = 'Номер телефона';}">
                         
                         
                         <input type="submit" class="modal-form-button btn" value="Перезвоните мне">
