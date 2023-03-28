@@ -27,6 +27,20 @@ function prodMenu() {
 prodMenu();
 
 
+function worksCat() {
+  const catItems = document.querySelectorAll('.work-form__cat');
+  catItems.forEach((item)=>{
+    item.addEventListener('click', (e)=>{
+      catItems.forEach((item)=>item.classList.remove('work-form__cat--active'));
+      e = e.target;
+      e.classList.add('work-form__cat--active');
+    })
+  })
+}
+
+worksCat();
+
+
 
 
 
