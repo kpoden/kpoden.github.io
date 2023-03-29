@@ -61,7 +61,7 @@
           <ul class="n-menu__list">
             <li class="n-menu__item"><a href="#">Продукция</a></li>
             <li class="n-menu__item"><a href="#">О компании</a></li>
-            <li class="n-menu__item"><a href="#">Работа у нас</a></li>
+            <li class="n-menu__item"><a href="index.html#work">Работа у нас</a></li>
             <li class="n-menu__item"><a href="#">Контакты</a></li>
           </ul>
         </div>
@@ -85,24 +85,33 @@
     <section class="product">
       <div class="product__wrap wrap">
         <h1 class="section-title">Наша <span class="section-title--blue">продукция</span> <img class="section-title__img" src="images/product/prod.png" alt=""></h1>
+
+        <p class="product__decor">Продукция</p>
       
 
         <div class="product__block products">
           <ul class="products__menu products-menu">
-            <li class="products-menu__item  products-menu__item--active">Газ. напитки</li>
-            <li class="products-menu__item">Негаз. напитки</li>
-            <li class="products-menu__item">Питьевая вода</li>
-            <li class="products-menu__item">Энергетики</li>
-            <li class="products-menu__item">Квасы</li>
+            <li class="products-menu__item  products-menu__item--active" data-menu="gas">Газ. напитки</li>
+            <li class="products-menu__item" data-menu="kvas">Негаз. напитки</li>
+            <li class="products-menu__item" data-menu="energy">Питьевая вода</li>
+            <li class="products-menu__item" data-menu="water">Энергетики</li>
+            <li class="products-menu__item" data-menu="negas">Квасы</li>
           </ul>
 
           <div class="products__list products-list">
-            <div class="products-list__item"><img src="images/product/prod-1.png" alt=""></div>
-            <div class="products-list__item"><img src="images/product/prod-2.png" alt=""></div>
-            <div class="products-list__item"><img src="images/product/prod-3.png" alt=""></div>
-            <div class="products-list__item"><img src="images/product/prod-4.png" alt=""></div>
-            <div class="products-list__item"><img src="images/product/prod-5.png" alt=""></div>
-            <div class="products-list__item"><img src="images/product/prod-6.png" alt=""></div>
+            <div class="products-list__item" data-type="gas"><img src="images/product/prod-1.png" alt=""></div>
+            <div class="products-list__item" data-type="gas"><img src="images/product/prod-2.png" alt=""></div>
+            <div class="products-list__item" data-type="gas"><img src="images/product/prod-3.png" alt=""></div>
+            <div class="products-list__item" data-type="gas"><img src="images/product/prod-4.png" alt=""></div>
+            <div class="products-list__item" data-type="gas"><img src="images/product/prod-5.png" alt=""></div>
+            <div class="products-list__item" data-type="gas"><img src="images/product/prod-6.png" alt=""></div>
+            <div class="products-list__item hidden" data-type="kvas"><img src="images/product/kvas/1.png" alt=""></div>
+            <div class="products-list__item hidden" data-type="kvas"><img src="images/product/kvas/2.png" alt=""></div>
+            <div class="products-list__item hidden" data-type="energy"><img src="images/product/energy/1.png" alt=""></div>
+            <div class="products-list__item hidden" data-type="water"><img src="images/product/water/1.png" alt=""></div>
+            <div class="products-list__item hidden" data-type="water"><img src="images/product/water/2.png" alt=""></div>
+            <div class="products-list__item hidden" data-type="negas"><img src="images/product/negas/1.png" alt=""></div>
+            <div class="products-list__item hidden" data-type="negas"><img src="images/product/negas/2.png" alt=""></div>
           </div>
 
           <div class="product__order order">
@@ -168,8 +177,11 @@
 
     <!-- History section -->
     <section class="history">
+      <img src="images/history/circle_decor.png" class="history__decor-circle"></img>
+      <img src="images/history/circle_decor2.png" class="history__decor-circle-2"></img>
       <div class="history__wrap wrap">
         <h1 class="section-title"><span class="section-title--blue">История</span>  <span class="section-title--wrap">компании</span></h1>
+        
         <div class="history__rail rail">
           <div class="rail__year year">
             <svg class="year__arr">
@@ -215,7 +227,7 @@
 
     <section class="geography">
       <div class="geography__wrap wrap">
-        <h1 class="section-title"><span class="section-title--blue">География</span>продаж</h1>
+        <h1 class="section-title"><span class="section-title--blue">География</span> продаж</h1>
 
         <div class="geography__list countries">
           <ul class="countries__list">
@@ -237,9 +249,11 @@
 
     <!-- Work section -->
 
-    <section class="work">
+    <section class="work"><a name="work"></a>
       <div class="work__wrap wrap">
-        <h1 class="section-title"><span class="section-title--blue">Работа</span>у нас</h1>
+        <h1 class="section-title"><span class="section-title--blue">Работа</span> у нас</h1>
+
+        <img class="work__person" src="images/work/person.png" alt="">
 
         <ul class="work__adv work-adv">
           <li class="work-adv__item">Стабильная работа, з/п без задержек</li>
@@ -281,21 +295,84 @@
         <h1 class="section-title"><span class="section-title--blue">Новости</span>  <span class="section-title--wrap">компании</span></h1>
 
         <div class="news__list">
-          <div class="news__item news-item">
+          <div class="news__item news-item  modal-trigger">
             <div class="news-item__img-wrap">
               <img src="images/news/news-1.png" alt="" class="news-item__img">
             </div>
             <p class="news-item__desc">Новинка, энергетический напиток TUSA</p>
           </div>
 
-          <div class="news__item news-item">
+          <div class="news__item news-item  modal-trigger">
             <div class="news-item__img-wrap">
               <img src="images/news/news-2.png" alt="" class="news-item__img">
             </div>
             <p class="news-item__desc">Новинка, энергетический напиток TUSA</p>
           </div>
 
-          <div class="news__item news-item">
+          <div class="news__item news-item  modal-trigger">
+            <div class="news-item__img-wrap">
+              <img src="images/news/news-3.png" alt="" class="news-item__img">
+            </div>
+            <p class="news-item__desc">Новинка, энергетический напиток TUSA</p>
+          </div>
+
+          <div class="news__item news-item  modal-trigger hidden">
+            <div class="news-item__img-wrap">
+              <img src="images/news/news-1.png" alt="" class="news-item__img">
+            </div>
+            <p class="news-item__desc">Новинка, энергетический напиток TUSA</p>
+          </div>
+
+          <div class="news__item news-item  modal-trigger  hidden">
+            <div class="news-item__img-wrap">
+              <img src="images/news/news-2.png" alt="" class="news-item__img">
+            </div>
+            <p class="news-item__desc">Новинка, энергетический напиток TUSA</p>
+          </div>
+
+          <div class="news__item news-item  modal-trigger  hidden">
+            <div class="news-item__img-wrap">
+              <img src="images/news/news-3.png" alt="" class="news-item__img">
+            </div>
+            <p class="news-item__desc">Новинка, энергетический напиток TUSA</p>
+          </div>
+
+          <div class="news__item news-item  modal-trigger  hidden">
+            <div class="news-item__img-wrap">
+              <img src="images/news/news-1.png" alt="" class="news-item__img">
+            </div>
+            <p class="news-item__desc">Новинка, энергетический напиток TUSA</p>
+          </div>
+
+          <div class="news__item news-item  modal-trigger hidden">
+            <div class="news-item__img-wrap">
+              <img src="images/news/news-2.png" alt="" class="news-item__img">
+            </div>
+            <p class="news-item__desc">Новинка, энергетический напиток TUSA</p>
+          </div>
+
+          <div class="news__item news-item  modal-trigger  hidden">
+            <div class="news-item__img-wrap">
+              <img src="images/news/news-3.png" alt="" class="news-item__img">
+            </div>
+            <p class="news-item__desc">Новинка, энергетический напиток TUSA</p>
+          </div>
+
+          <div class="news__item news-item  modal-trigger hidden">
+            <div class="news-item__img-wrap">
+              <img src="images/news/news-1.png" alt="" class="news-item__img">
+            </div>
+            <p class="news-item__desc">Новинка, энергетический напиток TUSA</p>
+          </div>
+
+          <div class="news__item news-item  modal-trigger hidden">
+            <div class="news-item__img-wrap">
+              <img src="images/news/news-2.png" alt="" class="news-item__img">
+            </div>
+            <p class="news-item__desc">Новинка, энергетический напиток TUSA</p>
+          </div>
+
+          <div class="news__item news-item modal-trigger hidden">
             <div class="news-item__img-wrap">
               <img src="images/news/news-3.png" alt="" class="news-item__img">
             </div>
@@ -308,10 +385,12 @@
       </div>
     </section>
 
+
+
     <footer class="footer">
       
       <div class="footer__wrap wrap">
-        <h1 class="section-title"><span class="section-title--white">Новости</span>  <span class="section-title--wrap section-title--white bold">компании</span></h1>
+        <h1 class="section-title"><span class="section-title--white">Наши </span>  <span class="section-title--wrap section-title--white bold">контакты</span></h1>
 
 
         <div class="footer__map footer-map">
@@ -341,6 +420,30 @@
       <img src="images/dec-circle.png" alt="" class="footer__dec1">
       <img src="images/dec-circle.png" alt="" class="footer__dec2">
     </footer>
+
+    <div class="modal" id="modal">
+      <span class="modal__close"></span>
+      <div class="modal__wrap">
+        <div class="modal__images">
+          <div class="modal__image"><img src="images/news/news-1.png" alt=""></div>
+          <div class="modal__image"><img src="images/news/news-2.png" alt=""></div>
+          <div class="modal__image"><img src="images/news/news-3.png" alt=""></div>
+          
+        </div>
+        <div class="modal__text">
+          <p>Наш продукт — настоящий. И мы не стесняемся показывать настоящую жизнь. 
+            Мы уверены, что в сегодняшних реалиях это куда интереснее, чем фантазия маркетологов. 
+            Наш продукт — настоящий. И мы не стесняемся показывать настоящую жизнь. Мы уверены, что в сегодняшних 
+            реалиях это куда интереснее, чем фантазия маркетологов.
+          </p>
+          <p>Наш продукт — настоящий. И мы не стесняемся показывать настоящую жизнь. 
+            Мы уверены, что в сегодняшних реалиях это куда интереснее, чем фантазия маркетологов. 
+            Наш продукт — настоящий. И мы не стесняемся показывать настоящую жизнь. Мы уверены, что в сегодняшних 
+            реалиях это куда интереснее, чем фантазия маркетологов.
+          </p>
+        </div>
+      </div>
+    </div>
 
 
 
