@@ -59,10 +59,10 @@
         </div>
         <div class="header-top__menu n-menu">
           <ul class="n-menu__list">
-            <li class="n-menu__item"><a href="#">Продукция</a></li>
-            <li class="n-menu__item"><a href="#">О компании</a></li>
-            <li class="n-menu__item"><a href="index.html#work">Работа у нас</a></li>
-            <li class="n-menu__item"><a href="#">Контакты</a></li>
+            <li class="n-menu__item" id="menu-production"><a href="#">Продукция</a></li>
+            <li class="n-menu__item" id="menu-about"><a href="#">О компании</a></li>
+            <li class="n-menu__item" id="menu-work"><a href="#">Работа у нас</a></li>
+            <li class="n-menu__item" id="menu-contacts"><a href="#">Контакты</a></li>
           </ul>
         </div>
         <div class="header-top__lang n-lang">
@@ -114,13 +114,15 @@
             <div class="products-list__item hidden" data-type="negas"><img src="images/product/negas/2.png" alt=""></div>
           </div>
 
-          <div class="product__order order">
-            <p class="order__text">Заказать питьевую воду  Ниагара</p>
-            <p class="order__vol">19 л</p>
-            <svg class="order__arr">
-              <use xlink:href="images/sprite.svg#arrow"></use>
-            </svg>
-          </div>
+          <a href="#" target="_blank">
+            <div class="product__order order">
+              <p class="order__text">Заказать питьевую воду  Ниагара</p>
+              <p class="order__vol">19 л</p>
+              <svg class="order__arr">
+                <use xlink:href="images/sprite.svg#arrow"></use>
+              </svg>
+            </div>
+          </a>
 
         </div>
 
@@ -130,7 +132,7 @@
 
 
     <!-- Mission section -->
-    <section class="mission">
+    <section class="mission"><a name="about"></a>
       <div class="mission__wrap wrap">
         <div class="mission__main mission-main">
           <div class="mission-main__title">
@@ -150,22 +152,22 @@
 
           <div class="mission-adv__item">
             <div class="mission-adv__text">
-              <span class="mission-adv__top-text">22</span>
-              <span class="mission-adv__subtext">года на рынке</span>
+              <span class="mission-adv__top-text">2</span>
+              <span class="mission-adv__subtext">завода <br> в России</span>
             </div>
           </div>
 
           <div class="mission-adv__item">
             <div class="mission-adv__text">
-              <span class="mission-adv__top-text">22</span>
-              <span class="mission-adv__subtext">года на рынке</span>
+              <span class="mission-adv__top-text">10</span>
+              <span class="mission-adv__subtext">ТОП-10 крупнейших производителей напитков</span>
             </div>
           </div>
 
           <div class="mission-adv__item">
             <div class="mission-adv__text">
-              <span class="mission-adv__top-text">22</span>
-              <span class="mission-adv__subtext">года на рынке</span>
+              <span class="mission-adv__top-text">50</span>
+              <span class="mission-adv__subtext">наград за качество продукции</span>
             </div>
           </div>
         </div>
@@ -267,20 +269,32 @@
 
         <div class="work__form work-form">
           <ul class="work-form__cats">
-            <li class="work-form__cat work-form__cat--active">Производство</li>
-            <li class="work-form__cat">Продажи</li>
-            <li class="work-form__cat">Безопасность</li>
+            <li class="work-form__cat work-form__cat--active" data-work-cat="production">Производство</li>
+            <li class="work-form__cat" data-work-cat="sales">Продажи</li>
+            <li class="work-form__cat" data-work-cat="safety">Безопасность</li>
           </ul>
 
-          <div class="work-form__list">
+          <div class="work-form__list" data-work-list="production">
             <div class="work-form__item">Наладчик</div>
             <div class="work-form__item">Грузчик</div>
             <div class="work-form__item">Продавец</div>
           </div>
 
+          <div class="work-form__list hidden" data-work-list="sales">
+            <div class="work-form__item">Глава отдела продаж</div>
+            <div class="work-form__item">Менеджер по продажам</div>
+            <div class="work-form__item">Менеджер-консультант</div>
+          </div>
+
+          <div class="work-form__list hidden" data-work-list="safety">
+            <div class="work-form__item">Начальник отдела безопасности</div>
+            <div class="work-form__item">Охранник</div>
+            <div class="work-form__item">Сторож</div>
+          </div>
+
           <div class="work-form__offer">
             <p>Хотите стать частью нашей компании?</p>
-            <p>Заполните анкету <a href="#" class="work-form__link"><span class="work-form__link--style">по ссылке</span>
+            <p>Заполните анкету <a href="https://docs.google.com/forms/d/1JIa3AQpXW0Rwj8PBTnmWRRfCxh0SZWozmWvZCkVhduc" target="_blank" class="work-form__link"><span class="work-form__link--style">по ссылке</span>
               <svg class="work__arr">
                 <use xlink:href="images/sprite.svg#link_arr"></use>
               </svg>
@@ -416,7 +430,7 @@
           </div>
         </div>
 
-        <p class="footer__policy">Политика конфиденциальности</p>
+        <p class="footer__policy"><a href="#" target="_blank">Политика конфиденциальности</a></p>
       </div>
       <img src="images/dec-circle.png" alt="" class="footer__dec1">
       <img src="images/dec-circle.png" alt="" class="footer__dec2">
@@ -459,6 +473,9 @@
   <!-- <script src="libs/jquery-3.6.0.min.js"></script> -->
   <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="libs/swiper-bundle.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollToPlugin.min.js"></script>
   <script src="scripts/main.js"></script>
 </body>
 

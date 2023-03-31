@@ -40,11 +40,26 @@ prodMenu();
 
 function worksCat() {
   const catItems = document.querySelectorAll('.work-form__cat');
+  const listItems = document.querySelectorAll('.work-form__list')
+
   catItems.forEach((item)=>{
     item.addEventListener('click', (e)=>{
+
       catItems.forEach((item)=>item.classList.remove('work-form__cat--active'));
       e = e.target;
       e.classList.add('work-form__cat--active');
+
+      const workType = e.getAttribute('data-work-cat');
+
+      listItems.forEach((item)=> {
+        item.classList.add('hidden');
+        if(item.getAttribute('data-work-list')== workType){
+          item.classList.remove('hidden');
+
+        }
+
+      })
+
     })
   })
 }
@@ -83,17 +98,65 @@ function newsSpoiler() {
     }
   })
 }
-      
-
-      
-
-        
-
-
-
-
+    
 newsSpoiler();
 
+let navLinks = document.querySelectorAll('.n-menu__item');
+
+navLinks.forEach(element => element.addEventListener('click', (e) => {
+    e.preventDefault();
+
+}))
+
+
+document.getElementById("menu-production").addEventListener("click", () => {
+    gsap.to(window, {
+        duration: 1,
+        scrollTo: {
+            y: ".product"
+        }
+    })
+})
+
+document.getElementById("menu-about").addEventListener("click", () => {
+    gsap.to(window, {
+        duration: .5,
+        scrollTo: {
+            y: ".mission"
+        }
+    })
+})
+
+document.getElementById("menu-work").addEventListener("click", () => {
+    gsap.to(window, {
+        duration: 1,
+        scrollTo: {
+            y: ".work"
+        }
+    })
+})
+document.getElementById("menu-contacts").addEventListener("click", () => {
+    gsap.to(window, {
+        duration: 1,
+        scrollTo: {
+            y: ".footer"
+        }
+    })
+})
+
+
+
+gsap.from(".order",  {
+  scrollTrigger: ".order",
+  y: '50px',
+  opacity: 0
+});
+
+gsap.to(".order", {
+  scrollTrigger: ".order",
+  y: '0',
+  opacity: '1'
+});
 
 
 
