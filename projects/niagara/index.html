@@ -51,7 +51,11 @@
 
     <!-- header block -->
     <header class="header n-block">
-      <img src="images/header/header-1.png" alt="Фон" class="header-top__bg">
+      <picture >
+        <source media="(max-width: 799px)" srcset="images/header/header-1-mob.png">
+        <img src="images/header/header-1.png" alt="Фон" class="header-top__bg">
+      </picture>
+      
       <div class="header-top">
        
         <div class="header-top__logo">
@@ -61,7 +65,7 @@
           <ul class="n-menu__list">
             <li class="n-menu__item" id="menu-production"><a href="#">Продукция</a></li>
             <li class="n-menu__item" id="menu-about"><a href="#">О компании</a></li>
-            <li class="n-menu__item" id="menu-work"><a href="#">Работа у нас</a></li>
+            <li class="n-menu__item" id="menu-work"><a href="">Работа у нас</a></li>
             <li class="n-menu__item" id="menu-contacts"><a href="#">Контакты</a></li>
           </ul>
         </div>
@@ -70,12 +74,22 @@
           <span class="n-lang__ru">RU</span>
           <span class="n-lang__en">EN</span>
         </div>
+
+        <svg class="burger_menu">
+          <use xlink:href="images/sprite.svg#burger"></use>
+        </svg>
       </div>
 
       <div class="header-main">
-        <p class="header-main__title"><img src="images/header/title.png" alt=""></p>
+        <picture >
+          <source media="(max-width: 799px)" srcset="images/header/title-mob.png">
+          <img class="header-main__title" src="images/header/title.png" alt=""></img>
+        </picture>
+        
         <p class="header-main__subtitle">Национальная водная компания</p>
       </div>
+
+      
 
     </header>
 
@@ -84,7 +98,7 @@
 
     <section class="product">
       <div class="product__wrap wrap">
-        <h1 class="section-title">Наша <span class="section-title--blue">продукция</span> <img class="section-title__img" src="images/product/prod.png" alt=""></h1>
+        <h1 class="section-title">Наша <img class="section-title__img dec_mob" src="images/product/prod.png" alt=""> <span class="section-title--blue mob_wrap">продукция</span> <img class="section-title__img dec_desk" src="images/product/prod.png" alt=""></h1>
 
         <p class="product__decor">Продукция</p>
       
@@ -132,7 +146,7 @@
 
 
     <!-- Mission section -->
-    <section class="mission"><a name="about"></a>
+    <section class="mission">
       <div class="mission__wrap wrap">
         <div class="mission__main mission-main">
           <div class="mission-main__title">
@@ -252,7 +266,7 @@
 
     <!-- Work section -->
 
-    <section class="work"><a name="work"></a>
+    <section class="work">
       <div class="work__wrap wrap">
         <h1 class="section-title"><span class="section-title--blue">Работа</span> у нас</h1>
 
@@ -421,6 +435,13 @@
           </div>
 
         </div>
+
+        <div class="footer-map__adress mob">
+            <svg class="map_dot">
+              <use xlink:href="images/sprite.svg#map_dot-orange"></use>
+            </svg>
+            <p class="footer-map__adress-text">г. Челябинск, ул. Новороссийская, 30</p>
+          </div>
 
         <div class="footer__contacts contacts">
           <p class="contacts__phone">+7 (351) 252-95-85</p>
