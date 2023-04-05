@@ -51,10 +51,21 @@
 
     <!-- header block -->
     <header class="header n-block">
-      <picture >
+      <video muted loop id="bgvid" class="header-top__bg-vid" >
+        <source src="sample.mp4" type="video/mp4">
+      </video>
+      <picture class="pecs">
         <source media="(max-width: 799px)" srcset="images/header/header-1-mob.png">
         <img src="images/header/header-1.png" alt="Фон" class="header-top__bg">
+        <img src="images/header/pecs/pec-2.png" alt="Фон" class="header-top__bg hidden">
+        <img src="images/header/pecs/pec-3.png" alt="Фон" class="header-top__bg hidden">
+        <img src="images/header/pecs/pec-4.png" alt="Фон" class="header-top__bg hidden">
+        <img src="images/header/pecs/pec-5.png" alt="Фон" class="header-top__bg hidden">
+        <img src="images/header/pecs/pec-6.png" alt="Фон" class="header-top__bg hidden">
+        <img src="images/header/pecs/pec-7.png" alt="Фон" class="header-top__bg hidden">
+        <img src="images/header/pecs/pec-8.png" alt="Фон" class="header-top__bg hidden">
       </picture>
+
       
       <div class="header-top">
        
@@ -156,31 +167,31 @@
           <div class="mission-main__text">нести любовь и радость: потребителям — через качество продукта, клиентам и поставщикам – через качество взаимодействия, сотрудникам – через заботу о них!</div>
         </div>
 
-        <div class="mission__adv mission-adv">
+        <div class="mission__adv mission-adv element-animation">
           <div class="mission-adv__item">
-            <div class="mission-adv__text">
-              <span class="mission-adv__top-text">22</span>
+            <div class="mission-adv__text counter">
+              <span class="mission-adv__top-text" data-count="22">22</span>
               <span class="mission-adv__subtext">года на рынке</span>
             </div>
           </div>
 
           <div class="mission-adv__item">
-            <div class="mission-adv__text">
-              <span class="mission-adv__top-text">2</span>
+            <div class="mission-adv__text counter">
+              <span class="mission-adv__top-text" data-count="2">2</span>
               <span class="mission-adv__subtext">завода <br> в России</span>
             </div>
           </div>
 
           <div class="mission-adv__item">
-            <div class="mission-adv__text">
-              <span class="mission-adv__top-text">10</span>
+            <div class="mission-adv__text counter">
+              <span class="mission-adv__top-text" data-count="10">10</span>
               <span class="mission-adv__subtext">ТОП-10 крупнейших производителей напитков</span>
             </div>
           </div>
 
           <div class="mission-adv__item">
             <div class="mission-adv__text">
-              <span class="mission-adv__top-text">50</span>
+              <span class="mission-adv__top-text" data-count="50">50</span>
               <span class="mission-adv__subtext">наград за качество продукции</span>
             </div>
           </div>

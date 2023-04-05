@@ -1,4 +1,86 @@
 
+function onEntry(entry) {
+  entry.forEach(change => {
+    if (change.isIntersecting) {
+      change.target.classList.add('element-show');
+      console.log('start count');
+      counters();
+    }
+  });
+}
+let options = { threshold: [0.5] };
+let observer = new IntersectionObserver(onEntry, options);
+let elements = document.querySelectorAll('.element-animation');
+
+for (let elm of elements) {
+  observer.observe(elm);
+}
+
+
+function counters() {
+  const counters = document.querySelectorAll('.mission-adv__top-text');
+
+  counters.forEach((counter)=> {
+      counter.innerText = 0;
+      let count = 0;
+
+      function updateCount() {
+        const target = parseFloat(counter.dataset.count);
+
+        if(count < target) {
+          count++;
+          counter.innerText = count;
+          setTimeout(updateCount, 40);
+        } else {
+          counter.innerText = target;
+        }
+
+    }
+
+    updateCount();
+
+  })
+
+}
+
+
+
+function pecsChange() {
+  var visitCount = parseInt(localStorage.getItem('visitCount')) || 0;
+  visitCount++;
+  localStorage.setItem('visitCount', visitCount);
+  let pecNum = visitCount % 8;
+  
+  const pecs = document.querySelectorAll('.header-top__bg');
+  
+  for (let i = 0; i < pecs.length; i++) {
+    pecs[i].classList.add('hidden');	
+    if(i == pecNum) {
+      pecs[i].classList.remove('hidden');
+    }
+  }
+
+}
+
+pecsChange();
+
+
+function videoAppear() {
+  const videoBg = document.querySelector('.header-top__bg-vid');
+  const pecs = document.querySelector('.pecs');
+
+  setTimeout(function() {
+    pecs.classList.add('pecs_disappear');
+    videoBg.play();
+  }, 4000)
+
+
+}
+
+videoAppear();
+
+
+
 
 function lang() {
   const switchLang = document.querySelector('.n-lang');
