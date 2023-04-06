@@ -1,14 +1,87 @@
 
+function scrollBlocks() {
+
+  const yearNum = document.querySelector('.year__num');
+  const scrollBlocks = document.querySelectorAll('.events__item');
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+
+  for (let index = 0; index < scrollBlocks.length; index++) {
+
+    const block = scrollBlocks[index];
+    block.classList.add('hiddenBlock');
+
+    document.addEventListener('scroll', () => {
+
+      if (block.getBoundingClientRect().top < (viewportHeight / 2) + 150) {
+        block.classList.remove('hiddenBlock');
+        block.classList.add('visibleBlock');
+      } else {
+        block.classList.add('hiddenBlock');
+        block.classList.remove('visibleBlock');
+      }
+
+      const visBlocks = document.querySelectorAll('.visibleBlock');
+      let yearNew = parseFloat(visBlocks[visBlocks.length - 1].dataset.year);
+      let yearOld = parseFloat(yearNum.innerText);
+
+      yearNum.innerText = yearNew;
+
+    //   function updateCount() {
+
+    //     if(yearOld < yearNew) {
+    //       yearOld++;
+    //       yearNum.innerText = yearOld;
+    //       setTimeout(updateCount, 500);
+    //     } else {
+    //       yearNum.innerText = yearNew;
+    //     }
+
+    // }
+
+    // updateCount()
+
+
+
+    })
+
+  }
+
+
+
+//   scrollBlocks.forEach(block => {
+//       block.classList.add('hiddenBlock');
+//       document.addEventListener('scroll', () => {
+
+
+//       if(block.getBoundingClientRect().top < (viewportHeight/2) + 150) {
+
+//         block.classList.remove('hiddenBlock');
+//         console.log(block.dataset.year);
+//       }
+//   })
+// })
+}
+
+
+
+scrollBlocks()
+
+
+
+
+
+
+
 function onEntry(entry) {
   entry.forEach(change => {
     if (change.isIntersecting) {
       change.target.classList.add('element-show');
-      console.log('start count');
       counters();
     }
   });
 }
-let options = { threshold: [0.5] };
+let options = { threshold: [0.9] };
 let observer = new IntersectionObserver(onEntry, options);
 let elements = document.querySelectorAll('.element-animation');
 
@@ -30,7 +103,7 @@ function counters() {
         if(count < target) {
           count++;
           counter.innerText = count;
-          setTimeout(updateCount, 40);
+          setTimeout(updateCount, 150);
         } else {
           counter.innerText = target;
         }
