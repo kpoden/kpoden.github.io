@@ -1,4 +1,36 @@
 
+function sectionsFix() {
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+  const allSections = document.querySelectorAll('.n-block');
+
+  for (let i = 0; i < 2; i++) {
+    const section = allSections[i];
+
+    section.classList.add('unfixed');
+    section.style.top = (viewportHeight) + 'px';
+
+    document.addEventListener('scroll', () => {
+      console.log(section.getBoundingClientRect().top);
+      if (section.getBoundingClientRect().top < 5) {
+        
+        section.classList.add('fixedBlock');
+        section.style.top = '0px';
+      } else {
+        section.classList.remove('fixedBlock');
+      }
+
+    
+  })
+}
+}
+
+
+// sectionsFix()
+
+
+
+
+
 function scrollBlocks() {
 
   const yearNum = document.querySelector('.year__num');
@@ -47,26 +79,9 @@ function scrollBlocks() {
 
   }
 
-
-
-//   scrollBlocks.forEach(block => {
-//       block.classList.add('hiddenBlock');
-//       document.addEventListener('scroll', () => {
-
-
-//       if(block.getBoundingClientRect().top < (viewportHeight/2) + 150) {
-
-//         block.classList.remove('hiddenBlock');
-//         console.log(block.dataset.year);
-//       }
-//   })
-// })
 }
 
-
-
-scrollBlocks()
-
+// scrollBlocks();
 
 
 
@@ -81,7 +96,7 @@ function onEntry(entry) {
     }
   });
 }
-let options = { threshold: [0.9] };
+let options = { threshold: [0.1] };
 let observer = new IntersectionObserver(onEntry, options);
 let elements = document.querySelectorAll('.element-animation');
 
@@ -91,28 +106,47 @@ for (let elm of elements) {
 
 
 function counters() {
-  const counters = document.querySelectorAll('.mission-adv__top-text');
+  const counters = document.querySelectorAll( '.counter' );
+	
+    jQuery(function ($) {
+        "use strict";
+      
+        var counterUp = window.counterUp["default"];
+      
+      
+        counters.forEach((counter=>{
+          counterUp( counter, {
+            duration: 1000,
+            delay: 5,
+        } )
+        }))
+       
+  
+    });
 
-  counters.forEach((counter)=> {
-      counter.innerText = 0;
-      let count = 0;
+//   const counters = document.querySelectorAll('.mission-adv__top-text');
 
-      function updateCount() {
-        const target = parseFloat(counter.dataset.count);
+//   counters.forEach((counter)=> {
+//       counter.innerText = 0;
+//       let count = 0;
 
-        if(count < target) {
-          count++;
-          counter.innerText = count;
-          setTimeout(updateCount, 150);
-        } else {
-          counter.innerText = target;
-        }
+//       function updateCount() {
+//         const target = parseFloat(counter.dataset.count);
 
-    }
+//         if(count < target) {
+//           count++;
+//           counter.innerText = count;
+//           const duration = 4000/target;
+//           setTimeout(updateCount, duration);
+//         } else {
+//           counter.innerText = target;
+//         }
 
-    updateCount();
+//     }
 
-  })
+//     updateCount();
+
+//   })
 
 }
 
@@ -150,7 +184,7 @@ function videoAppear() {
 
 }
 
-videoAppear();
+// videoAppear();
 
 
 
