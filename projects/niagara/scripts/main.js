@@ -1,4 +1,78 @@
 
+function fixBlocks(){
+  function parallex() {
+      ypos = window.pageYOffset;
+      const header = document.querySelector('.header');
+      const product = document.querySelector('.product');
+      const history = document.querySelector('.history');
+      const geography = document.querySelector('.geography');
+      const work = document.querySelector('.work');
+      const news = document.querySelector('.news');
+      const footer = document.querySelector('.footer');
+  
+      if(ypos>0 && ypos<900){
+       var top = 0 - ypos;
+       header.style.position = 'fixed';
+       header.style.padding = '55px 65px 55px';
+       product.style.top = '876px';
+      }
+      if(ypos>900){
+       header.style.position = 'relative';
+       product.style.top = '0';
+      }
+      if(ypos>4916){
+       var top = (4916 - ypos)*.5;
+       var top1 = -4916 + ypos;
+       history.style.position = 'relative';
+       history.style.top = top1+'px';
+       geography.style.top = top+'px';
+       geography.style.marginBottom = top+'px';
+       geography.style.position = 'relative';
+  
+      }
+      if(ypos>5784){
+       history.style.top = 'auto';
+      }
+      if(ypos>6545){
+       geography.style.top = '-814px';
+       geography.style.marginBottom = '-814px';
+      }
+      if(ypos>6580){
+       var top = 6580 - ypos;
+       var top1 = -6580 + ypos;
+       if(344 < top1){
+          var top1 = 344;
+       }
+  
+       work.style.position = 'relative';
+       work.style.top = top1+'px';
+       news.style.top = top+'px';
+       news.style.marginBottom = top+'px';
+       news.style.position = 'relative';
+      }
+      if(ypos>7030){
+       var top = 7030 - ypos;
+       var top1 = (-7030 + ypos)-450;
+       if(-100 < top1){
+          var top1 = -100;
+          var mar = -800;
+          news.style.marginBottom = mar+'px';
+       }
+       news.style.top = top1+'px';
+       footer.style.top = top+'px';
+       footer.style.marginBottom = top+'px';
+       footer.style.position = 'relative';
+  
+      }
+  
+  
+  }
+  window.addEventListener('scroll', parallex), false;
+  }
+  // fixBlocks()
+
+
+
 function sectionsFix() {
   const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
   const allSections = document.querySelectorAll('.n-block');

@@ -594,10 +594,29 @@
   </main>
   
   <!-- end of container -->
-
-
-
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" ></script>
+  <script>
+    $(function(){
+     var id = '.header,.mission,.history,.work,.news';
+     $('head').append('<style>body {overflow-x: hidden;}#allrecords {overflow: visible !important;}#t-header,#t-footer {position: relative;z-index: 2;} .t-rec {position: relative;z-index: 1;overflow-x: hidden;}'+id+' { position: -webkit-sticky; position: sticky; top: 0; z-index: 0;}</style>');
+     $(window).on('load resize', function(){
+        $(id).each(function(){
+         var topPosition = $(window).height() - $(this).height();
+         if (topPosition < 0) {
+            $(this).css('top',topPosition)
+         } else {
+            $(this).css('top',0)
+         }
+        });
+     });
+    });
+</script>
+<style>
+    .header, .mission,.history{background: #F2F2F2; z-index: -1;}
+    .work{background: #F2F2F2;}
+</style>
+
+ 
   <script src="libs/swiper-bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script>
