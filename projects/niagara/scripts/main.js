@@ -1,4 +1,17 @@
 
+function parallex() {
+  const ypos = window.pageYOffset;
+  const header = $('.header').height();    
+  if(ypos-header>135){
+      $('.header').css({'opacity':0})
+  }else{
+      $('.header').css({'opacity':1})
+  }
+  }
+  window.addEventListener('scroll', parallex), false;
+
+
+
 function fixBlocks(){
   function parallex() {
       ypos = window.pageYOffset;
@@ -119,7 +132,7 @@ function scrollBlocks() {
 
     document.addEventListener('scroll', () => {
 
-      if (block.getBoundingClientRect().top < (viewportHeight / 2) + 150) {
+      if (block.getBoundingClientRect().top - 100 < (viewportHeight / 2) + 150) {
         block.classList.remove('hiddenBlock');
         block.classList.add('visibleBlock');
       } else {
@@ -491,10 +504,10 @@ gsap.to(".order", {
 
 
     class Modal {
-      constructor(modalId) {
+      constructor(modalId, trigger) {
         this.modal = document.getElementById(modalId);
         this.closeButton = this.modal.querySelector('.modal__close');
-        this.modalTrigger = document.querySelectorAll('.modal-trigger');
+        this.modalTrigger = document.querySelectorAll(trigger);
         this.overlay = document.querySelector('.overlay-dark');
         this.isOpen = false;
         this.closeButton.addEventListener('click', () => this.close());
@@ -525,6 +538,10 @@ gsap.to(".order", {
       }
     }
 
-    const modal = new Modal('modal');
+    const modalNews = new Modal('modal-news', '.modal-trigger');
 
-    modal.init()
+    modalNews.init();
+
+    const modalProd = new Modal('modal-prod', '.modal-trigger-prod');
+
+    modalProd.init();
