@@ -106,14 +106,45 @@ function isElementInViewport(el) {
 
 function onePunch() {
   const sectionMission = document.querySelector('.mission');
+  const sectionProduct = document.querySelector('.product');
   const sectionGeography = document.querySelector('.geography');
   const sectionNews = document.querySelector('.news');
   const sectionWork = document.querySelector('.work');
+  const sectionHistory = document.querySelector('.history');
 
   sections = [];
   sections.push(sectionMission);
   sections.push(sectionWork);
-  // sections.push(sectionNews);
+
+  sections_half = [];
+  sections_half.push(sectionNews);
+  sections_half.push(sectionProduct);
+  sections_half.push(sectionGeography);
+  sections_half.push(sectionHistory);
+
+
+  sections_half.forEach(function(section) {
+    window.addEventListener('scroll', () => {
+      const rect = section.getBoundingClientRect();
+      if(rect.top < (window.innerHeight || document.documentElement.clientHeight) / 2) {
+        console.log('half');
+        const topPos = document.documentElement.scrollTop + window.innerHeight/2;
+        if(!section.classList.contains('scrolled')) {
+          gsap.to(window, {
+            duration: 1,
+            scrollTo: topPos
+        })
+      
+          section.classList.add('scrolled');
+        }
+      } else {
+        section.classList.remove('scrolled');
+      }
+      
+
+  })
+
+  })
 
   sections.forEach(function(section) {
     window.addEventListener('scroll', () => {
