@@ -128,10 +128,10 @@ function onePunch() {
 
         
         if(!section.classList.contains('scrolled')) {
-          window.scrollTo({
-            top: topPos,
-            behavior: 'smooth'
-          });
+          gsap.to(window, {
+            duration: 1,
+            scrollTo: topPos
+        })
       
           section.classList.add('scrolled');
         }
@@ -480,7 +480,6 @@ document.getElementById("menu-contacts").addEventListener("click", () => {
 })
 
 document.getElementById("scroll-up").addEventListener("click", () => {
-  console.log('su');
   gsap.to(window, {
       duration: 1,
       scrollTo: {
@@ -488,6 +487,8 @@ document.getElementById("scroll-up").addEventListener("click", () => {
       }
   })
 })
+
+
 
 
 
