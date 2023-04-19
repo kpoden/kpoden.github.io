@@ -1,3 +1,25 @@
+$(document).ready(function(){
+  setTimeout(function(){
+      window.scrollTo(0, 0);
+  }, 1);
+});
+
+
+
+
+function orderDisappear() {
+  const order = document.querySelector('.order');
+  window.addEventListener('scroll', () => {
+    console.log(order.getBoundingClientRect().top);
+    if(order.getBoundingClientRect().top < 100) {
+      order.classList.add('unvis');
+    } else {
+      order.classList.remove('unvis');
+    }
+  })
+}
+orderDisappear()
+
 
 function parallex() {
   const ypos = window.pageYOffset;
@@ -141,27 +163,15 @@ function scrollBlocks() {
       }
 
       const visBlocks = document.querySelectorAll('.visibleBlock');
-      let yearNew = parseFloat(visBlocks[visBlocks.length - 1].dataset.year);
-      let yearOld = parseFloat(yearNum.innerText);
+      if(visBlocks.length > 1) {
+        let yearNew = parseFloat(visBlocks[visBlocks.length - 1].dataset.year);
+        let yearOld = parseFloat(yearNum.innerText);
+        yearNum.innerText = yearNew;
 
-      yearNum.innerText = yearNew;
+      }
+      
 
-    //   function updateCount() {
-
-    //     if(yearOld < yearNew) {
-    //       yearOld++;
-    //       yearNum.innerText = yearOld;
-    //       setTimeout(updateCount, 500);
-    //     } else {
-    //       yearNum.innerText = yearNew;
-    //     }
-
-    // }
-
-    // updateCount()
-
-
-
+      
     })
 
   }
@@ -545,3 +555,36 @@ gsap.to(".order", {
     const modalProd = new Modal('modal-prod', '.modal-trigger-prod');
 
     modalProd.init();
+
+
+class Product {
+  constructor(prodId) {
+    this.chooseFlav = document.querySelectorAll('.flavours__item');
+    this.chooseVolIcon = document.querySelector('.prod-switch');
+    this.chooseVolSwitch = document.querySelector('.prod-switch__switch');
+
+
+  }
+
+  chooseFlavor() {
+    this.chooseFlav.forEach((el) =>
+      el.addEventListener('click', () => {
+        this.chooseFlav.forEach(el => el.classList.remove('flavours--active'));
+        el.classList.add('flavours--active')
+      }
+      )
+    )
+  }
+
+  chooseVol() {
+    this.chooseVolIcon.addEventListener('click', () => {
+      this.chooseVolSwitch.classList.toggle('switched');
+    })
+  }
+
+}
+
+const td = new Product('td');
+
+td.chooseFlavor();
+td.chooseVol();
