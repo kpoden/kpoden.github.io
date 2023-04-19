@@ -1,11 +1,22 @@
 $(document).ready(function(){
+  window.onbeforeunload = function () {
+    window.scrollTo(0,0);
+};
   setTimeout(function(){
       window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
+      gsap.to(window, {
+        duration: 1,
+        scrollTo: {
+            y: "body"
+        }
+    })
   }, 1);
 });
 
 
 function scrollFix() {
+
 document.addEventListener("DOMContentLoaded", function(event) {
 
   var id = '.header,.mission,.history,.work,.news';
@@ -82,6 +93,61 @@ window.addEventListener('scroll', () => {
 
 // smoothScroll()
 
+
+function isElementInViewport(el) {
+  var rect = el.getBoundingClientRect();
+
+  return rect.bottom > 0 &&
+      rect.right > 0 &&
+      rect.left < (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */ &&
+      rect.top < (window.innerHeight || document.documentElement.clientHeight) /* or $(window).height() */;
+}
+
+
+function onePunch() {
+  const sectionMission = document.querySelector('.mission');
+  const sectionGeography = document.querySelector('.geography');
+  const sectionNews = document.querySelector('.news');
+
+  sections = [];
+  sections.push(sectionMission);
+  sections.push(sectionGeography);
+  sections.push(sectionNews);
+
+  sections.forEach(function(section) {
+    window.addEventListener('scroll', () => {
+      const rect = section.getBoundingClientRect();
+      console.log(rect);
+
+      if(isElementInViewport(section)) {
+        console.log('section is in viewport');
+
+        const topPos = document.documentElement.scrollTop + window.innerHeight;
+        console.log(topPos);
+
+        
+        if(!section.classList.contains('scrolled')) {
+          window.scrollTo({
+            top: topPos,
+            behavior: 'smooth'
+          });
+      
+          section.classList.add('scrolled');
+        }
+    
+    } else {
+      section.classList.remove('scrolled');
+    }
+  })
+
+  })
+
+
+  }
+
+
+
+onePunch()
 
 function scrollUpAppear() {
   window.addEventListener('scroll', function() {
