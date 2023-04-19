@@ -5,15 +5,27 @@ $(document).ready(function(){
 });
 
 
+function scrollUpAppear() {
+  window.addEventListener('scroll', function() {
+    var element = document.getElementById('scroll-up');
+    if (window.scrollY > 500) {
+      element.classList.add('scroll-up__appear');
+    } else {
+      element.classList.remove('scroll-up__appear');
+    }
+  });
+}
+
+scrollUpAppear();
 
 
 function orderDisappear() {
   const order = document.querySelector('.order');
   window.addEventListener('scroll', () => {
     if(order.getBoundingClientRect().top < 100) {
-      order.classList.add('unvis');
+      order.classList.add('unvisOrder');
     } else {
-      order.classList.remove('unvis');
+      order.classList.remove('unvisOrder');
     }
   })
 }
@@ -168,8 +180,6 @@ function scrollBlocks() {
         yearNum.innerText = yearNew + ' г';
 
       }
-      
-
       
     })
 
@@ -420,6 +430,7 @@ document.getElementById("menu-work").addEventListener("click", () => {
         }
     })
 })
+
 document.getElementById("menu-contacts").addEventListener("click", () => {
     gsap.to(window, {
         duration: 1,
@@ -428,6 +439,17 @@ document.getElementById("menu-contacts").addEventListener("click", () => {
         }
     })
 })
+
+document.getElementById("scroll-up").addEventListener("click", () => {
+  console.log('su');
+  gsap.to(window, {
+      duration: 1,
+      scrollTo: {
+          y: "body"
+      }
+  })
+})
+
 
 
 
