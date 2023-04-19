@@ -749,6 +749,8 @@
   <!-- end of container -->
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" ></script>
   <script>
+    document.addEventListener("DOMContentLoaded", function(event) { 
+
     $(function(){
      var id = '.header,.mission,.history,.work,.news';
      $('head').append('<style>body {overflow-x: hidden;}#allrecords {overflow: visible !important;}#t-header,#t-footer {position: relative;z-index: 2;} .t-rec {position: relative;z-index: 1;overflow-x: hidden;}'+id+' { position: -webkit-sticky; position: sticky; top: 0; z-index: 0;}</style>');
@@ -763,6 +765,7 @@
         });
      });
     });
+  });
 </script>
 <style>
     .header, .mission,.history{background: #F2F2F2; z-index: 0;}

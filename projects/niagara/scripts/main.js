@@ -10,7 +10,6 @@ $(document).ready(function(){
 function orderDisappear() {
   const order = document.querySelector('.order');
   window.addEventListener('scroll', () => {
-    console.log(order.getBoundingClientRect().top);
     if(order.getBoundingClientRect().top < 100) {
       order.classList.add('unvis');
     } else {
@@ -163,10 +162,10 @@ function scrollBlocks() {
       }
 
       const visBlocks = document.querySelectorAll('.visibleBlock');
-      if(visBlocks.length > 1) {
+      if(visBlocks.length > 0) {
         let yearNew = parseFloat(visBlocks[visBlocks.length - 1].dataset.year);
         let yearOld = parseFloat(yearNum.innerText);
-        yearNum.innerText = yearNew;
+        yearNum.innerText = yearNew + ' г';
 
       }
       
