@@ -108,11 +108,12 @@ function onePunch() {
   const sectionMission = document.querySelector('.mission');
   const sectionGeography = document.querySelector('.geography');
   const sectionNews = document.querySelector('.news');
+  const sectionWork = document.querySelector('.work');
 
   sections = [];
   sections.push(sectionMission);
-  sections.push(sectionGeography);
-  sections.push(sectionNews);
+  sections.push(sectionWork);
+  // sections.push(sectionNews);
 
   sections.forEach(function(section) {
     window.addEventListener('scroll', () => {
