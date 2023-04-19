@@ -5,14 +5,63 @@ $(document).ready(function(){
 });
 
 
-function smoothScroll() {
+function scrollFix() {
+document.addEventListener("DOMContentLoaded", function(event) {
 
+  var id = '.header,.mission,.history,.work,.news';
+
+  window.addEventListener('load', function() {
+    var elements = document.querySelectorAll(id);
+    var windowHeight = window.innerHeight;
+
+    elements.forEach(function(element) {
+      var elementHeight = element.offsetHeight;
+      var topPosition = windowHeight - elementHeight;
+
+      if (element.classList.contains('history')) {
+        topPosition = (windowHeight / 2) - elementHeight;
+      }
+
+      if (topPosition < 0) {
+        element.style.top = topPosition + 'px';
+      } else {
+        element.style.top = '0';
+      }
+    });
+  });
+
+  window.addEventListener('resize', function() {
+    var elements = document.querySelectorAll(id);
+    var windowHeight = window.innerHeight;
+
+    elements.forEach(function(element) {
+      var elementHeight = element.offsetHeight;
+      var topPosition = windowHeight - elementHeight;
+
+      if (element.classList.contains('history')) {
+        topPosition = (windowHeight / 2) - elementHeight;
+      }
+
+      if (topPosition < 0) {
+        element.style.top = topPosition + 'px';
+      } else {
+        element.style.top = '0';
+      }
+    });
+  });
+
+});
+
+}
+
+scrollFix()
+
+
+function smoothScroll() {
 
 const nBlocks = document.querySelectorAll('.n-block');
 
-
 window.addEventListener('scroll', () => {
-
   for (let i = 0; i < nBlocks.length; i++) {
 
       const rect = nBlocks[i].getBoundingClientRect();
@@ -74,110 +123,6 @@ function parallex() {
 
 
 
-function fixBlocks(){
-  function parallex() {
-      ypos = window.pageYOffset;
-      const header = document.querySelector('.header');
-      const product = document.querySelector('.product');
-      const history = document.querySelector('.history');
-      const geography = document.querySelector('.geography');
-      const work = document.querySelector('.work');
-      const news = document.querySelector('.news');
-      const footer = document.querySelector('.footer');
-  
-      if(ypos>0 && ypos<900){
-       var top = 0 - ypos;
-       header.style.position = 'fixed';
-       header.style.padding = '55px 65px 55px';
-       product.style.top = '876px';
-      }
-      if(ypos>900){
-       header.style.position = 'relative';
-       product.style.top = '0';
-      }
-      if(ypos>4916){
-       var top = (4916 - ypos)*.5;
-       var top1 = -4916 + ypos;
-       history.style.position = 'relative';
-       history.style.top = top1+'px';
-       geography.style.top = top+'px';
-       geography.style.marginBottom = top+'px';
-       geography.style.position = 'relative';
-  
-      }
-      if(ypos>5784){
-       history.style.top = 'auto';
-      }
-      if(ypos>6545){
-       geography.style.top = '-814px';
-       geography.style.marginBottom = '-814px';
-      }
-      if(ypos>6580){
-       var top = 6580 - ypos;
-       var top1 = -6580 + ypos;
-       if(344 < top1){
-          var top1 = 344;
-       }
-  
-       work.style.position = 'relative';
-       work.style.top = top1+'px';
-       news.style.top = top+'px';
-       news.style.marginBottom = top+'px';
-       news.style.position = 'relative';
-      }
-      if(ypos>7030){
-       var top = 7030 - ypos;
-       var top1 = (-7030 + ypos)-450;
-       if(-100 < top1){
-          var top1 = -100;
-          var mar = -800;
-          news.style.marginBottom = mar+'px';
-       }
-       news.style.top = top1+'px';
-       footer.style.top = top+'px';
-       footer.style.marginBottom = top+'px';
-       footer.style.position = 'relative';
-  
-      }
-  
-  
-  }
-  window.addEventListener('scroll', parallex), false;
-  }
-  // fixBlocks()
-
-
-
-function sectionsFix() {
-  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-  const allSections = document.querySelectorAll('.n-block');
-
-  for (let i = 0; i < 2; i++) {
-    const section = allSections[i];
-
-    section.classList.add('unfixed');
-    section.style.top = (viewportHeight) + 'px';
-
-    document.addEventListener('scroll', () => {
-      console.log(section.getBoundingClientRect().top);
-      if (section.getBoundingClientRect().top < 5) {
-        
-        section.classList.add('fixedBlock');
-        section.style.top = '0px';
-      } else {
-        section.classList.remove('fixedBlock');
-      }
-
-    
-  })
-}
-}
-
-
-// sectionsFix()
-
-
-
 
 
 function scrollBlocks() {
@@ -217,8 +162,6 @@ function scrollBlocks() {
 }
 
 scrollBlocks();
-
-
 
 
 
