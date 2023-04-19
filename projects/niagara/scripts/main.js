@@ -5,6 +5,35 @@ $(document).ready(function(){
 });
 
 
+function smoothScroll() {
+
+
+const nBlocks = document.querySelectorAll('.n-block');
+
+
+window.addEventListener('scroll', () => {
+
+  for (let i = 0; i < nBlocks.length; i++) {
+
+      const rect = nBlocks[i].getBoundingClientRect();
+
+
+      if (rect.top >= 0) {
+
+        const scrollPos = rect.top - window.innerHeight + rect.height;
+
+        window.scrollTo({
+          top: scrollPos,
+          behavior: 'smooth'
+        });
+      }
+    }
+  });
+}
+
+// smoothScroll()
+
+
 function scrollUpAppear() {
   window.addEventListener('scroll', function() {
     var element = document.getElementById('scroll-up');
@@ -177,7 +206,7 @@ function scrollBlocks() {
       if(visBlocks.length > 0) {
         let yearNew = parseFloat(visBlocks[visBlocks.length - 1].dataset.year);
         let yearOld = parseFloat(yearNum.innerText);
-        yearNum.innerText = yearNew + ' г';
+        yearNum.innerText = yearNew;
 
       }
       
