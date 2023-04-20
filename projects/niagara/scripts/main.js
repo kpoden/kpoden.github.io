@@ -15,6 +15,18 @@ $(document).ready(function(){
 });
 
 
+function productTextAppear() {
+  const pmStar = document.querySelector(".pm-star__wrap");
+  const pmText = document.querySelector(".pm-star__text");
+
+  pmStar.addEventListener("click", function(e) {
+    pmText.classList.toggle("pm-text--showed");
+
+  })
+}
+
+productTextAppear()
+
 function scrollFix() {
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -128,9 +140,9 @@ function onePunch() {
   sections_half.forEach(function(section) {
     window.addEventListener('scroll', () => {
       const rect = section.getBoundingClientRect();
-      if(rect.top < (window.innerHeight || document.documentElement.clientHeight) / 1.3) {
+      if(rect.top < (window.innerHeight || document.documentElement.clientHeight) / 1.1) {
         console.log('half');
-        const topPos = document.documentElement.scrollTop + window.innerHeight/1.3;
+        const topPos = document.documentElement.scrollTop + window.innerHeight/1.1;
         if(!section.classList.contains('scrolled')) {
           gsap.to(window, {
             duration: 1,
