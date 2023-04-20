@@ -111,6 +111,7 @@ function onePunch() {
   const sectionNews = document.querySelector('.news');
   const sectionWork = document.querySelector('.work');
   const sectionHistory = document.querySelector('.history');
+  const sectionFooter = document.querySelector('.footer');
 
   sections = [];
   sections.push(sectionMission);
@@ -121,14 +122,15 @@ function onePunch() {
   sections_half.push(sectionProduct);
   sections_half.push(sectionGeography);
   sections_half.push(sectionHistory);
+  sections_half.push(sectionFooter);
 
 
   sections_half.forEach(function(section) {
     window.addEventListener('scroll', () => {
       const rect = section.getBoundingClientRect();
-      if(rect.top < (window.innerHeight || document.documentElement.clientHeight) / 2) {
+      if(rect.top < (window.innerHeight || document.documentElement.clientHeight) / 1.3) {
         console.log('half');
-        const topPos = document.documentElement.scrollTop + window.innerHeight/2;
+        const topPos = document.documentElement.scrollTop + window.innerHeight/1.3;
         if(!section.classList.contains('scrolled')) {
           gsap.to(window, {
             duration: 1,
@@ -149,13 +151,11 @@ function onePunch() {
   sections.forEach(function(section) {
     window.addEventListener('scroll', () => {
       const rect = section.getBoundingClientRect();
-      console.log(rect);
 
       if(isElementInViewport(section)) {
         console.log('section is in viewport');
 
         const topPos = document.documentElement.scrollTop + window.innerHeight;
-        console.log(topPos);
 
         
         if(!section.classList.contains('scrolled')) {
