@@ -15,6 +15,88 @@ $(document).ready(function(){
 });
 
 
+
+
+class Products {
+  constructor(products, modal) {
+    this.productsData = document.getElementById(products);
+    this.modal = document.getElementById(modal);
+    this.bg = document.querySelector('.product-modal__header');
+    this.productImage = document.querySelector('.prod-display__img img');
+    this.init();
+  }
+
+  getProductInfo(productName) {
+    this.productName = productName;
+    this.products = JSON.parse(this.productsData.innerHTML).products;
+    for (let i = 0; i < this.products.length; i++) {
+      const product = this.products[i];
+      if (product.name === this.productName) {
+        this.product = product;
+      }
+    }
+  }
+
+  getFlavor(product) {
+
+  }
+
+  getVolume(product) {
+
+  }
+
+
+  changeWindow(id) {
+    this.getProductInfo(id);
+    this.flavours = document.querySelectorAll('.flavours__item');
+    this.activeFlavour = this.flavours[0].getAttribute('data-name');
+
+    this.flavours.forEach((item) => {
+      item.addEventListener('click', (e)=>{
+        this.activeFlavour = e.target.closest('.flavours__item').getAttribute('data-name');
+        
+        this.product.volumes[0].flavors.forEach((flavor) => {
+        if(flavor.name == this.activeFlavour) {
+          this.bg.style.background = flavor.bgcolor;
+          this.productImage.src = flavor.image;
+
+        }
+      });
+
+      })
+    })
+
+  }
+
+  init() {
+    this.changeWindow('taezhniydar');
+    // console.log(product);
+  }
+
+
+}
+
+const products = new Products("products", "modal-prod");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function productTextAppear() {
   const pmStar = document.querySelector(".pm-star__wrap");
   const pmText = document.querySelector(".pm-star__text");
@@ -191,7 +273,7 @@ function onePunch() {
 
 
 
-onePunch()
+// onePunch()
 
 function scrollUpAppear() {
   window.addEventListener('scroll', function() {
@@ -683,6 +765,7 @@ class Product {
   chooseVol() {
     this.chooseVolIcon.addEventListener('click', () => {
       this.chooseVolSwitch.classList.toggle('switched');
+      // this.chooseVolIcon.setAttribute('data-vol', '2');
     })
   }
 

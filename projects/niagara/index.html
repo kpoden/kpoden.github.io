@@ -130,19 +130,19 @@
           </ul>
 
           <div class="products__list products-list">
-            <div class="products-list__item  modal-trigger-prod" data-type="gas"><img src="images/product/prod-1.png" alt=""></div>
-            <div class="products-list__item  modal-trigger-prod" data-type="gas"><img src="images/product/prod-2.png" alt=""></div>
-            <div class="products-list__item" data-type="gas"><img src="images/product/prod-3.png" alt=""></div>
-            <div class="products-list__item" data-type="gas"><img src="images/product/prod-4.png" alt=""></div>
-            <div class="products-list__item" data-type="gas"><img src="images/product/prod-5.png" alt=""></div>
-            <div class="products-list__item" data-type="gas"><img src="images/product/prod-6.png" alt=""></div>
-            <div class="products-list__item hidden" data-type="kvas"><img src="images/product/kvas/1.png" alt=""></div>
-            <div class="products-list__item hidden" data-type="kvas"><img src="images/product/kvas/2.png" alt=""></div>
-            <div class="products-list__item hidden" data-type="energy"><img src="images/product/energy/1.png" alt=""></div>
-            <div class="products-list__item hidden" data-type="water"><img src="images/product/water/1.png" alt=""></div>
-            <div class="products-list__item hidden" data-type="water"><img src="images/product/water/2.png" alt=""></div>
-            <div class="products-list__item hidden" data-type="negas"><img src="images/product/negas/1.png" alt=""></div>
-            <div class="products-list__item hidden" data-type="negas"><img src="images/product/negas/2.png" alt=""></div>
+            <div class="products-list__item  modal-trigger-prod" data-type="gas" id="taezhniydar"><img src="images/product/prod-1.png" alt=""></div>
+            <div class="products-list__item  modal-trigger-prod" data-type="gas" id="vips"><img src="images/product/prod-2.png" alt=""></div>
+            <div class="products-list__item" data-type="gas" id="'tropical"><img src="images/product/prod-3.png" alt=""></div>
+            <div class="products-list__item" data-type="gas" id="col"><img src="images/product/prod-4.png" alt=""></div>
+            <div class="products-list__item" data-type="gas" id="sladvod"><img src="images/product/prod-5.png" alt=""></div>
+            <div class="products-list__item" data-type="gas" id="shh"><img src="images/product/prod-6.png" alt=""></div>
+            <div class="products-list__item hidden" data-type="kvas" id="morsel"><img src="images/product/kvas/1.png" alt=""></div>
+            <div class="products-list__item hidden" data-type="kvas" id="kurorti"><img src="images/product/kvas/2.png" alt=""></div>
+            <div class="products-list__item hidden" data-type="energy" id="skandinavia"><img src="images/product/energy/1.png" alt=""></div>
+            <div class="products-list__item hidden" data-type="water" id="zuratkul"><img src="images/product/water/1.png" alt=""></div>
+            <div class="products-list__item hidden" data-type="water" id="tusa"><img src="images/product/water/2.png" alt=""></div>
+            <div class="products-list__item hidden" data-type="negas" id="okroshechka"><img src="images/product/negas/1.png" alt=""></div>
+            <div class="products-list__item hidden" data-type="negas" id="rzhanoi"><img src="images/product/negas/2.png" alt=""></div>
           </div>
 
           <a href="#" target="_blank">
@@ -591,7 +591,7 @@
       </div>
     </div>
 
-    <div class="modal product-modal" id="modal-prod">
+    <div class="modal product-modal opened-modal" id="modal-prod">
 
       <span class="modal__close"></span>
 
@@ -614,39 +614,39 @@
         <div class="pm-header__flavours flavours">
           <h2 class="flavours__title">5 вкусов:</h2>
           <div class="flavours__choose">
-            <div class="flavours__item flavours--active">
+            <div class="flavours__item flavours--active" data-name="chernika">
               <div class="flavours__img-wrap">
                 <img class="flavours__img" src="images/products/taezhniy/flav-1.png" alt="Черника на травах">
               </div>
               <span class="flavours__name">Черника на травах</span>
             </div>
 
-            <div class="flavours__item ">
+            <div class="flavours__item " data-name="ezhevika">
               <div class="flavours__img-wrap">
                 <img class="flavours__img" src="images/products/taezhniy/flav-2.png" alt="Черника на травах">
               </div>
-              <span class="flavours__name">Черника на травах</span>
+              <span class="flavours__name">Ежевика на травах</span>
             </div>
 
-            <div class="flavours__item">
+            <div class="flavours__item" data-name="bodryashiy">
               <div class="flavours__img-wrap">
                 <img class="flavours__img" src="images/products/taezhniy/flav-3.png" alt="Черника на травах">
               </div>
-              <span class="flavours__name">Черника на травах</span>
+              <span class="flavours__name">Бодрящий на травах</span>
             </div>
 
-            <div class="flavours__item">
+            <div class="flavours__item" data-name="brusnika">
               <div class="flavours__img-wrap">
                 <img class="flavours__img" src="images/products/taezhniy/flav-4.png" alt="Черника на травах">
               </div>
-              <span class="flavours__name">Черника на травах</span>
+              <span class="flavours__name">Брусника на травах</span>
             </div>
 
-            <div class="flavours__item">
+            <div class="flavours__item" data-name="vse">
               <div class="flavours__img-wrap">
                 <img class="flavours__img" src="images/products/taezhniy/flav-5.png" alt="Черника на травах">
               </div>
-              <span class="flavours__name">Черника на травах</span>
+              <span class="flavours__name">Все в сборе</span>
             </div>
             <!-- 
             <div class="flavours__item">
@@ -795,6 +795,78 @@
     .header, .mission,.history{background: #F2F2F2; z-index: 0;}
     .work{background: #F2F2F2;}
 </style>
+
+<script type="application/json" id="products">
+  {
+    "products": [
+      {
+        "name": "taezhniydar",
+        "subtitle": "Pure and refreshing water sourced from the Taiga forests.",
+        "logo" : "",
+        "volumes": [
+          {
+            "size": "1,45л",
+            "flavors": [
+              {
+                "name": "chernika",
+                "image": "images/products/taezhniy/td-big-chnt.png",
+                "logo": "taezhniydar_500",
+                "bgcolor": "radial-gradient(41.7% 56.55% at 72.16% 50%, #B76AFF 0%, #8349B8 100%)"
+              },
+              {
+                "name": "ezhevika",
+                "image": "images/products/taezhniy/td-big-ezhnt.png",
+                "logo": "taezhniydar_500",
+                "bgcolor": "radial-gradient(41.7% 56.55% at 72.16% 50%, #037CD4 0%, #0163AA 100%)"
+              },
+              {
+                "name": "bodryashiy",
+                "image": "images/products/taezhniy/td-big-bodnt.png",
+                "logo": "taezhniydar_500",
+                "bgcolor": "radial-gradient(41.7% 56.55% at 72.16% 50%, #343434 0%, #232323 100%)"
+              },
+              {
+                "name": "brusnika",
+                "image": "images/products/taezhniy/td-big-brunt.png",
+                "logo": "taezhniydar_500",
+                "bgcolor": "radial-gradient(41.7% 56.55% at 72.16% 50%, #BE3F6F 0%, #930142 100%)"
+              },
+              {
+                "name": "vse",
+                "image": "images/products/taezhniy/td-big-vse.png",
+                "logo": "taezhniydar_500",
+                "bgcolor": "radial-gradient(41.7% 56.55% at 72.16% 50%, #089B4A 0%, #01803D 100%)"
+              }
+            ]
+          },
+          {
+            "size": "0,5л",
+            "flavors": [
+              {
+                "name": "Original",
+                "description": "Stay hydrated with this 1-liter bottle of Taezhniydar water.",
+                "image": "taezhniydar_1L_original.jpg"
+              },
+              {
+                "name": "Lemon",
+                "description": "Quench your thirst with the zesty taste of lemon in this 1-liter bottle of Taezhniydar water.",
+                "image": "taezhniydar_1L_lemon.jpg"
+              },
+              {
+                "name": "Berry",
+                "description": "Experience the taste of fresh berries in this 1-liter bottle of Taezhniydar water.",
+                "image": "taezhniydar_1L_berry.jpg"
+              }
+            ]
+          }
+        
+        ]
+      }
+    ]
+  }
+      
+  
+  </script>
 
  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
