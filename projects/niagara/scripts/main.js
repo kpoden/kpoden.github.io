@@ -185,7 +185,7 @@ window.addEventListener('scroll', () => {
   });
 }
 
-smoothScroll()
+// smoothScroll()
 
 
 function isElementInViewport(el) {
