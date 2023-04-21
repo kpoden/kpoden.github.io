@@ -185,7 +185,7 @@ window.addEventListener('scroll', () => {
   });
 }
 
-// smoothScroll()
+smoothScroll()
 
 
 function isElementInViewport(el) {
@@ -273,7 +273,7 @@ function onePunch() {
 
 
 
-// onePunch()
+onePunch()
 
 function scrollUpAppear() {
   window.addEventListener('scroll', function() {
