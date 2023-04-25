@@ -23,6 +23,15 @@ class Products {
     this.modal = document.getElementById(modal);
     this.bg = document.querySelector('.product-modal__header');
     this.productImage = document.querySelector('.prod-display__img img');
+    this.chooseVol = document.querySelector('.prod-switch');
+    this.chooseVolIcon = document.querySelector('.prod-switch');
+    this.chooseVolSwitch = document.querySelector('.prod-switch__switch');
+    this.chooseVolIcon.setAttribute('data-curr-vol','1');
+    this.currentVol = '0';
+    this.currentFlavor = 'taezhniydar';
+
+    this.subtitleText = document.querySelector('.pm-header__title-sub');
+    this.logoImage = document.querySelector('.pm-header__title-main img');
     this.init();
   }
 
@@ -37,17 +46,82 @@ class Products {
     }
   }
 
-  getFlavor(product) {
+
+
+  initMainWindow() {
+    console.log(this.product);
+    console.log(this.logoImage.src);
+    this.subtitleText.innerHTML = this.product.subtitle;
+    this.logoImage.src = this.product.logo;
+  }
+
+  getFlavors(product) {
+    
+
 
   }
 
-  getVolume(product) {
+  getVolume() {
+    this.chooseVolIcon.addEventListener('click', () => {
 
+      if(this.chooseVolIcon.classList.contains('vol-quant-3')) {
+        
+
+        if(this.chooseVolSwitch.classList.contains('switched')) {
+          this.chooseVolSwitch.classList.remove('switched');
+          this.chooseVolSwitch.classList.add('swithed2');
+          this.chooseVolIcon.setAttribute('data-curr-vol','2');
+          this.currentVol = '2';
+        } else if(this.chooseVolSwitch.classList.contains('swithed2')) {
+          this.chooseVolSwitch.classList.remove('switched');
+          this.chooseVolSwitch.classList.remove('switched2');
+          this.chooseVolIcon.setAttribute('data-curr-vol','0');
+          this.currentVol = '0';
+        } else {
+          this.chooseVolSwitch.classList.add('switched');
+          this.chooseVolIcon.setAttribute('data-curr-vol','1');
+          this.currentVol = '1';
+        }
+
+      }
+
+      if(this.chooseVolIcon.classList.contains('vol-quant-2')) {
+        if(this.chooseVolSwitch.classList.contains('switched')) {
+          this.chooseVolIcon.setAttribute('data-curr-vol','1');
+          this.chooseVolSwitch.classList.remove('switched');
+          this.currentVol = '0';
+          
+        } else {
+          this.chooseVolIcon.setAttribute('data-curr-vol','2');
+          this.chooseVolSwitch.classList.add('switched');
+          this.currentVol = '1';
+        }
+
+      }
+
+      
+        this.activeFlavour = document.querySelector('.flavours--active').getAttribute('data-name');
+        
+        
+        this.product.volumes[this.currentVol].flavors.forEach((flavor) => {
+        if(flavor.name == this.activeFlavour) {
+          this.bg.style.background = flavor.bgcolor;
+          this.productImage.src = flavor.image;
+
+        }
+      });
+
+
+     
+    })
   }
+
+
 
 
   changeWindow(id) {
     this.getProductInfo(id);
+    this.initMainWindow();
     this.flavours = document.querySelectorAll('.flavours__item');
     this.activeFlavour = this.flavours[0].getAttribute('data-name');
 
@@ -55,7 +129,8 @@ class Products {
       item.addEventListener('click', (e)=>{
         this.activeFlavour = e.target.closest('.flavours__item').getAttribute('data-name');
         
-        this.product.volumes[0].flavors.forEach((flavor) => {
+        
+        this.product.volumes[this.currentVol].flavors.forEach((flavor) => {
         if(flavor.name == this.activeFlavour) {
           this.bg.style.background = flavor.bgcolor;
           this.productImage.src = flavor.image;
@@ -66,11 +141,12 @@ class Products {
       })
     })
 
+
   }
 
   init() {
-    this.changeWindow('taezhniydar');
-    // console.log(product);
+    this.getVolume();
+    this.changeWindow(this.currentFlavor);
   }
 
 
@@ -223,7 +299,6 @@ function onePunch() {
     window.addEventListener('scroll', () => {
       const rect = section.getBoundingClientRect();
       if(rect.top < (window.innerHeight || document.documentElement.clientHeight) / 1.1) {
-        console.log('half');
         const topPos = document.documentElement.scrollTop + window.innerHeight/1.1;
         if(!section.classList.contains('scrolled')) {
           gsap.to(window, {
@@ -746,8 +821,8 @@ gsap.to(".order", {
 class Product {
   constructor(prodId) {
     this.chooseFlav = document.querySelectorAll('.flavours__item');
-    this.chooseVolIcon = document.querySelector('.prod-switch');
-    this.chooseVolSwitch = document.querySelector('.prod-switch__switch');
+    
+    
 
 
   }
@@ -762,16 +837,10 @@ class Product {
     )
   }
 
-  chooseVol() {
-    this.chooseVolIcon.addEventListener('click', () => {
-      this.chooseVolSwitch.classList.toggle('switched');
-      // this.chooseVolIcon.setAttribute('data-vol', '2');
-    })
-  }
+  
 
 }
 
 const td = new Product('td');
 
 td.chooseFlavor();
-td.chooseVol();
