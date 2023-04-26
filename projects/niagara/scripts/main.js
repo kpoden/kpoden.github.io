@@ -31,7 +31,7 @@ class Products {
     this.flavoursChooseDiv = document.querySelector('.flavours__choose');
     this.currentVol = '0';
     this.currentProd = id;
-
+    
     this.subtitleText = document.querySelector('.pm-header__title-sub');
     this.logoImage = document.querySelector('.pm-header__title-main img');
     this.init();
@@ -51,8 +51,8 @@ class Products {
 
 
   initMainWindow() {
-    this.productImage.src = this.product.volumes[0].flavors[0].image;
-    this.bg.style.background = this.product.volumes[0].flavors[0].bgcolor;
+    this.productImage.src = this.product.volumes[this.currentVol].flavors[0].image;
+    this.bg.style.background = this.product.volumes[this.currentVol].flavors[0].bgcolor;
     this.subtitleText.innerHTML = this.product.subtitle;
     this.logoImage.src = this.product.logo;
   }
@@ -112,7 +112,6 @@ class Products {
     }
 
     this.flavours = document.querySelectorAll('.flavours__item');
-    console.log(this.flavours);
     this.listenFlavors();
 
 
@@ -124,15 +123,20 @@ class Products {
       if(flavor.name == this.activeFlavour) {
         this.bg.style.background = flavor.bgcolor;
         this.productImage.src = flavor.image;
-        console.log(this.productImage.src);
 
       }
     });
 
   }
 
+  addListenerVolume() {
+    this.chooseVolIcon.removeEventListener('click', this.getVolume.bind(this));
+    this.chooseVolIcon.addEventListener('click', this.getVolume.bind(this));
+  }
+
   getVolume() {
-    this.chooseVolIcon.addEventListener('click', () => {
+    
+      console.log(this.chooseVolIcon);
 
       if(this.chooseVolIcon.classList.contains('vol-quant-3')) {
         
@@ -168,9 +172,8 @@ class Products {
         }
 
       }
-
-      this.initMainWindow();
       this.initFlavorsList();
+      this.initMainWindow();
       
 
       
@@ -187,7 +190,6 @@ class Products {
 
 
      
-    })
   }
 
 
@@ -238,7 +240,7 @@ class Products {
   }
 
   init() {
-    this.getVolume();
+    this.addListenerVolume();
     this.changeWindow(this.currentProd);
   }
 
@@ -251,6 +253,7 @@ const productList = document.querySelectorAll('.products-list__item');
 
 productList.forEach((item) => {
   item.addEventListener('click', (e) => {
+    delete products;
     const id = item.getAttribute('id');
     const products = new Products("products", "modal-prod", id);
   });
