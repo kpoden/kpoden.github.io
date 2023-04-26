@@ -18,7 +18,7 @@ $(document).ready(function(){
 
 
 class Products {
-  constructor(products, modal) {
+  constructor(products, modal, id) {
     this.productsData = document.getElementById(products);
     this.modal = document.getElementById(modal);
     this.bg = document.querySelector('.product-modal__header');
@@ -26,9 +26,11 @@ class Products {
     this.chooseVol = document.querySelector('.prod-switch');
     this.chooseVolIcon = document.querySelector('.prod-switch');
     this.chooseVolSwitch = document.querySelector('.prod-switch__switch');
-    this.chooseVolIcon.setAttribute('data-curr-vol','1');
+    this.chooseVolSwitch.classList.remove('switched');
+    this.chooseVolIcon.setAttribute('data-curr-vol','0');
+    this.flavoursChooseDiv = document.querySelector('.flavours__choose');
     this.currentVol = '0';
-    this.currentFlavor = 'taezhniydar';
+    this.currentProd = id;
 
     this.subtitleText = document.querySelector('.pm-header__title-sub');
     this.logoImage = document.querySelector('.pm-header__title-main img');
@@ -49,15 +51,83 @@ class Products {
 
 
   initMainWindow() {
-    console.log(this.product);
-    console.log(this.logoImage.src);
+    this.productImage.src = this.product.volumes[0].flavors[0].image;
+    this.bg.style.background = this.product.volumes[0].flavors[0].bgcolor;
     this.subtitleText.innerHTML = this.product.subtitle;
     this.logoImage.src = this.product.logo;
   }
 
-  getFlavors(product) {
+  initFlavorsList() {
     
+    this.flavoursChooseDiv.innerHTML = "";
+    const flavorQuantSpan = document.querySelector('.flavours__quant');
 
+    this.flavorList = [];
+
+    this.product.volumes[this.currentVol].flavors.forEach((flavor) => {
+      this.flavorList.push(flavor);
+    });
+
+    const flavQuant = this.flavorList.length;
+    flavorQuantSpan.innerHTML = flavQuant;
+
+
+    for (let i = 0; i < this.flavorList.length; i++) {
+      const flavor = this.flavorList[i];
+      
+    
+      // Create the flavours__item element
+      const flavoursItemDiv = document.createElement('div');
+      flavoursItemDiv.classList.add('flavours__item');
+      flavoursItemDiv.dataset.name = flavor.name;
+
+      if(i==0) {
+        flavoursItemDiv.classList.add('flavours--active');
+      }
+
+      //img wrap
+      const imgWrap = document.createElement('div');
+      imgWrap.classList.add('flavours__img-wrap');
+
+      // Create the img element
+      const imgElem = document.createElement('img');
+      imgElem.classList.add('flavours__img');
+      imgElem.src = flavor.icon;
+      imgElem.alt = flavor.title;
+
+      imgWrap.appendChild(imgElem);
+    
+      // Create the span element
+      const spanElem = document.createElement('span');
+      spanElem.classList.add('flavours__name');
+      spanElem.textContent = flavor.title;
+    
+      // Append the img and span elements to the flavours__item div
+      flavoursItemDiv.appendChild(imgWrap);
+      flavoursItemDiv.appendChild(spanElem);
+    
+      // Append the flavours__item div to the flavours__choose div
+      this.flavoursChooseDiv.appendChild(flavoursItemDiv);
+
+    }
+
+    this.flavours = document.querySelectorAll('.flavours__item');
+    console.log(this.flavours);
+    this.listenFlavors();
+
+
+  }
+
+  getCurrentFlavor() {
+
+    this.product.volumes[this.currentVol].flavors.forEach((flavor) => {
+      if(flavor.name == this.activeFlavour) {
+        this.bg.style.background = flavor.bgcolor;
+        this.productImage.src = flavor.image;
+        console.log(this.productImage.src);
+
+      }
+    });
 
   }
 
@@ -87,32 +157,67 @@ class Products {
 
       if(this.chooseVolIcon.classList.contains('vol-quant-2')) {
         if(this.chooseVolSwitch.classList.contains('switched')) {
-          this.chooseVolIcon.setAttribute('data-curr-vol','1');
+          this.chooseVolIcon.setAttribute('data-curr-vol','0');
           this.chooseVolSwitch.classList.remove('switched');
           this.currentVol = '0';
           
         } else {
-          this.chooseVolIcon.setAttribute('data-curr-vol','2');
+          this.chooseVolIcon.setAttribute('data-curr-vol','1');
           this.chooseVolSwitch.classList.add('switched');
           this.currentVol = '1';
         }
 
       }
 
+      this.initMainWindow();
+      this.initFlavorsList();
       
-        this.activeFlavour = document.querySelector('.flavours--active').getAttribute('data-name');
-        
-        
-        this.product.volumes[this.currentVol].flavors.forEach((flavor) => {
-        if(flavor.name == this.activeFlavour) {
-          this.bg.style.background = flavor.bgcolor;
-          this.productImage.src = flavor.image;
 
-        }
-      });
+      
+      // this.activeFlavour = document.querySelector('.flavours--active').getAttribute('data-name');
+        
+        
+      //   this.product.volumes[this.currentVol].flavors.forEach((flavor) => {
+      //   if(flavor.name == this.activeFlavour) {
+      //     this.bg.style.background = flavor.bgcolor;
+      //     this.productImage.src = flavor.image;
+
+      //   }
+      // });
 
 
      
+    })
+  }
+
+
+
+  listenFlavors() {
+    this.activeFlavour = this.flavours[0].getAttribute('data-name');
+    this.getCurrentFlavor();
+    
+    this.flavours.forEach((item) => {
+      
+      
+      item.addEventListener('click', (e)=>{
+        this.flavours.forEach((item) => {
+          item.classList.remove('flavours--active');
+        });
+
+
+        this.activeFlavour = e.target.closest('.flavours__item').getAttribute('data-name');
+        this.activeFlavorIcon =  e.target.closest('.flavours__item');
+
+
+        
+        this.activeFlavorIcon.classList.add('flavours--active');
+
+        this.getCurrentFlavor();
+        
+        
+        
+
+      })
     })
   }
 
@@ -122,37 +227,34 @@ class Products {
   changeWindow(id) {
     this.getProductInfo(id);
     this.initMainWindow();
-    this.flavours = document.querySelectorAll('.flavours__item');
-    this.activeFlavour = this.flavours[0].getAttribute('data-name');
+    this.initFlavorsList();
+    
+    
+    
 
-    this.flavours.forEach((item) => {
-      item.addEventListener('click', (e)=>{
-        this.activeFlavour = e.target.closest('.flavours__item').getAttribute('data-name');
-        
-        
-        this.product.volumes[this.currentVol].flavors.forEach((flavor) => {
-        if(flavor.name == this.activeFlavour) {
-          this.bg.style.background = flavor.bgcolor;
-          this.productImage.src = flavor.image;
-
-        }
-      });
-
-      })
-    })
+    
 
 
   }
 
   init() {
     this.getVolume();
-    this.changeWindow(this.currentFlavor);
+    this.changeWindow(this.currentProd);
   }
 
 
 }
 
-const products = new Products("products", "modal-prod");
+
+
+const productList = document.querySelectorAll('.products-list__item');
+
+productList.forEach((item) => {
+  item.addEventListener('click', (e) => {
+    const id = item.getAttribute('id');
+    const products = new Products("products", "modal-prod", id);
+  });
+})
 
 
 
@@ -235,7 +337,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 }
 
-scrollFix()
+// scrollFix()
 
 
 function smoothScroll() {
@@ -322,7 +424,6 @@ function onePunch() {
       const rect = section.getBoundingClientRect();
 
       if(isElementInViewport(section)) {
-        console.log('section is in viewport');
 
         const topPos = document.documentElement.scrollTop + window.innerHeight;
 
@@ -348,7 +449,7 @@ function onePunch() {
 
 
 
-onePunch()
+// onePunch()
 
 function scrollUpAppear() {
   window.addEventListener('scroll', function() {
@@ -818,29 +919,21 @@ gsap.to(".order", {
     modalProd.init();
 
 
-class Product {
-  constructor(prodId) {
-    this.chooseFlav = document.querySelectorAll('.flavours__item');
+// class Product {
+//   constructor(prodId) {
+//     this.chooseFlav = document.querySelectorAll('.flavours__item');
     
     
 
 
-  }
-
-  chooseFlavor() {
-    this.chooseFlav.forEach((el) =>
-      el.addEventListener('click', () => {
-        this.chooseFlav.forEach(el => el.classList.remove('flavours--active'));
-        el.classList.add('flavours--active')
-      }
-      )
-    )
-  }
+//   }
 
   
 
-}
+  
 
-const td = new Product('td');
+// }
 
-td.chooseFlavor();
+// const td = new Product('td');
+
+// td.chooseFlavor();
