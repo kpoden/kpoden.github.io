@@ -431,7 +431,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 }
 
-// scrollFix()
+scrollFix()
 
 
 function smoothScroll() {
@@ -543,7 +543,7 @@ function onePunch() {
 
 
 
-// onePunch()
+onePunch()
 
 function scrollUpAppear() {
   window.addEventListener('scroll', function() {
