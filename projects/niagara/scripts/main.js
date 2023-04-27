@@ -23,17 +23,21 @@ class Products {
     this.modal = document.getElementById(modal);
     this.bg = document.querySelector('.product-modal__header');
     this.productImage = document.querySelector('.prod-display__img img');
-    this.chooseVol = document.querySelector('.prod-switch');
-    this.chooseVolIcon = document.querySelector('.prod-switch');
-    this.chooseVolSwitch = document.querySelector('.prod-switch__switch');
-    this.chooseVolSwitch.classList.remove('switched');
-    this.chooseVolIcon.setAttribute('data-curr-vol','0');
+    this.switchWrap = document.querySelector('.switch-wrap');
+    this.switchWrap.innerHTML = "";
     this.flavoursChooseDiv = document.querySelector('.flavours__choose');
     this.currentVol = '0';
     this.currentProd = id;
-    
     this.subtitleText = document.querySelector('.pm-header__title-sub');
     this.logoImage = document.querySelector('.pm-header__title-main img');
+    this.pmStarBlock = document.querySelector('.prod-display__star');
+    this.pmStarBlock.classList.add('hidden');
+    this.pmTextWrap = document.querySelector('.pm-star__text');
+    this.advWrap = document.querySelector('.pm-adv');
+    this.secondWindow = document.querySelector('.prod-info');
+    this.secondWindow.classList.add('hidden');
+    this.secWindowImgElement = document.querySelector('.prod-info__bg');
+    this.secWindowTextWrap = document.querySelector('.prod-info__text');
     this.init();
   }
 
@@ -48,6 +52,61 @@ class Products {
     }
   }
 
+  createSecondWindow() {
+      const srcSet = this.secWindowImgElement.querySelector('source');
+      const imgSrc = this.secWindowImgElement.querySelector('.prod-info__img');
+
+
+    if(this.product.secondWindow) {
+      this.secondWindow.classList.remove('hidden');
+      console.log(this.product);
+      
+      srcSet.srcset = this.product.secondWindow[0].imageMob;
+      imgSrc.src = this.product.secondWindow[0].image;
+      this.secWindowTextWrap.innerHTML = this.product.secondWindow[0].content;
+
+    }
+    
+
+  }
+
+  createAdvantages() {
+    this.advWrap.innerHTML = "";	
+    if (this.product.adv) {
+      const advData = this.product.adv;
+
+      advData.forEach(itemData => {
+        // Create the elements for the item
+        const itemContainer = document.createElement('div');
+        itemContainer.classList.add('pm-adv__item');
+      
+        const imgContainer = document.createElement('div');
+        imgContainer.classList.add('pm-adv__img');
+        const img = document.createElement('img');
+        img.src = itemData.icon;
+        img.alt = '';
+        imgContainer.appendChild(img);
+      
+        const title = document.createElement('h3');
+        title.classList.add('pm-adv__title');
+        title.textContent = itemData.title;
+      
+        const text = document.createElement('p');
+        text.classList.add('pm-adv__text');
+        text.innerHTML = itemData.text;
+      
+        // Append the elements to the item container
+        itemContainer.appendChild(imgContainer);
+        itemContainer.appendChild(title);
+        itemContainer.appendChild(text);
+      
+        // Append the item container to the parent container
+        this.advWrap.appendChild(itemContainer);
+      });
+    }
+    
+  }
+
 
 
   initMainWindow() {
@@ -55,15 +114,21 @@ class Products {
     this.bg.style.background = this.product.volumes[this.currentVol].flavors[0].bgcolor;
     this.subtitleText.innerHTML = this.product.subtitle;
     this.logoImage.src = this.product.logo;
+    this.showNote();
+  }
+
+  showNote() {
+    if(this.product.note) {
+      this.pmStarBlock.classList.remove('hidden');
+      this.pmTextWrap.textContent = this.product.note;
+    }
   }
 
   initFlavorsList() {
     
     this.flavoursChooseDiv.innerHTML = "";
     const flavorQuantSpan = document.querySelector('.flavours__quant');
-
     this.flavorList = [];
-
     this.product.volumes[this.currentVol].flavors.forEach((flavor) => {
       this.flavorList.push(flavor);
     });
@@ -74,9 +139,7 @@ class Products {
 
     for (let i = 0; i < this.flavorList.length; i++) {
       const flavor = this.flavorList[i];
-      
     
-      // Create the flavours__item element
       const flavoursItemDiv = document.createElement('div');
       flavoursItemDiv.classList.add('flavours__item');
       flavoursItemDiv.dataset.name = flavor.name;
@@ -85,11 +148,9 @@ class Products {
         flavoursItemDiv.classList.add('flavours--active');
       }
 
-      //img wrap
       const imgWrap = document.createElement('div');
       imgWrap.classList.add('flavours__img-wrap');
 
-      // Create the img element
       const imgElem = document.createElement('img');
       imgElem.classList.add('flavours__img');
       imgElem.src = flavor.icon;
@@ -97,16 +158,13 @@ class Products {
 
       imgWrap.appendChild(imgElem);
     
-      // Create the span element
       const spanElem = document.createElement('span');
       spanElem.classList.add('flavours__name');
       spanElem.textContent = flavor.title;
     
-      // Append the img and span elements to the flavours__item div
       flavoursItemDiv.appendChild(imgWrap);
       flavoursItemDiv.appendChild(spanElem);
     
-      // Append the flavours__item div to the flavours__choose div
       this.flavoursChooseDiv.appendChild(flavoursItemDiv);
 
     }
@@ -115,6 +173,63 @@ class Products {
     this.listenFlavors();
 
 
+  }
+
+  createSwitch() {
+
+    const prodDisplaySwitch = document.createElement('div');
+    prodDisplaySwitch.classList.add('prod-display__switch', 'prod-switch', `vol-quant-${this.volQuantity}`);
+    this.switchWrap.appendChild(prodDisplaySwitch);
+
+    const prodSwitchWrap = document.createElement('div');
+    prodSwitchWrap.classList.add('prod-switch__wrap');
+    prodDisplaySwitch.appendChild(prodSwitchWrap);
+
+    const prodSwitch = document.createElement('span');
+    prodSwitch.classList.add('prod-switch__switch');
+    prodSwitchWrap.appendChild(prodSwitch);
+
+    const vol1 = document.createElement('div');
+    vol1.classList.add('prod-switch__vol');
+    prodSwitchWrap.appendChild(vol1);
+
+    const span1 = document.createElement('span');
+    span1.textContent = this.sizes[0];
+    vol1.appendChild(span1);
+
+    if(this.volQuantity == 2 || this.volQuantity == 3) {
+      const vol2 = document.createElement('div');
+      vol2.classList.add('prod-switch__vol');
+      prodSwitchWrap.appendChild(vol2);
+
+      const span2 = document.createElement('span');
+      span2.textContent = this.sizes[1];
+      vol2.appendChild(span2);
+    }
+
+    if(this.volQuantity == 3) {
+      const vol3 = document.createElement('div');
+      vol3.classList.add('prod-switch__vol');
+      prodSwitchWrap.appendChild(vol3);
+
+      const span3 = document.createElement('span');
+      span3.textContent = this.sizes[2];
+      vol3.appendChild(span3);
+    }
+
+    this.chooseVolIcon = prodDisplaySwitch;
+    this.chooseVolSwitch = prodSwitch;
+
+
+
+  }
+
+  getVolQuantity() {
+    this.sizes = [];
+    this.product.volumes.forEach(el=>{
+      this.sizes.push(el.size);
+    });
+    this.volQuantity = this.sizes.length;
   }
 
   getCurrentFlavor() {
@@ -130,23 +245,22 @@ class Products {
   }
 
   addListenerVolume() {
-    this.chooseVolIcon.removeEventListener('click', this.getVolume.bind(this));
+
     this.chooseVolIcon.addEventListener('click', this.getVolume.bind(this));
   }
 
   getVolume() {
     
-      console.log(this.chooseVolIcon);
 
       if(this.chooseVolIcon.classList.contains('vol-quant-3')) {
         
 
         if(this.chooseVolSwitch.classList.contains('switched')) {
           this.chooseVolSwitch.classList.remove('switched');
-          this.chooseVolSwitch.classList.add('swithed2');
+          this.chooseVolSwitch.classList.add('switched2');
           this.chooseVolIcon.setAttribute('data-curr-vol','2');
           this.currentVol = '2';
-        } else if(this.chooseVolSwitch.classList.contains('swithed2')) {
+        } else if(this.chooseVolSwitch.classList.contains('switched2')) {
           this.chooseVolSwitch.classList.remove('switched');
           this.chooseVolSwitch.classList.remove('switched2');
           this.chooseVolIcon.setAttribute('data-curr-vol','0');
@@ -175,20 +289,6 @@ class Products {
       this.initFlavorsList();
       this.initMainWindow();
       
-
-      
-      // this.activeFlavour = document.querySelector('.flavours--active').getAttribute('data-name');
-        
-        
-      //   this.product.volumes[this.currentVol].flavors.forEach((flavor) => {
-      //   if(flavor.name == this.activeFlavour) {
-      //     this.bg.style.background = flavor.bgcolor;
-      //     this.productImage.src = flavor.image;
-
-      //   }
-      // });
-
-
      
   }
 
@@ -200,25 +300,17 @@ class Products {
     
     this.flavours.forEach((item) => {
       
-      
       item.addEventListener('click', (e)=>{
         this.flavours.forEach((item) => {
           item.classList.remove('flavours--active');
         });
 
-
         this.activeFlavour = e.target.closest('.flavours__item').getAttribute('data-name');
         this.activeFlavorIcon =  e.target.closest('.flavours__item');
-
-
-        
         this.activeFlavorIcon.classList.add('flavours--active');
 
         this.getCurrentFlavor();
         
-        
-        
-
       })
     })
   }
@@ -229,31 +321,30 @@ class Products {
   changeWindow(id) {
     this.getProductInfo(id);
     this.initMainWindow();
+    this.createAdvantages();
+    this.createSecondWindow();
+    this.getVolQuantity();
+    this.createSwitch();
+    this.addListenerVolume();
     this.initFlavorsList();
     
-    
-    
-
-    
-
-
   }
 
   init() {
-    this.addListenerVolume();
+    
     this.changeWindow(this.currentProd);
   }
-
-
 }
 
 
 
 const productList = document.querySelectorAll('.products-list__item');
+const switchWrap = document.querySelector('.switch-wrap');
+
 
 productList.forEach((item) => {
   item.addEventListener('click', (e) => {
-    delete products;
+    // switchWrap.innerHTML = "";
     const id = item.getAttribute('id');
     const products = new Products("products", "modal-prod", id);
   });
