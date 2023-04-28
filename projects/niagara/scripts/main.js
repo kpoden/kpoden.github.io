@@ -1001,7 +1001,7 @@ gsap.to(".order", {
     
       close() {
         this.modal.classList.remove('opened-modal');
-        this.modal.style.top = '-50%';
+        this.modal.style.top = '-100%';
         this.overlay.classList.remove('overlay--shown');
         this.isOpen = false;
       }
