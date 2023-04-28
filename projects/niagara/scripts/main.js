@@ -543,7 +543,7 @@ function onePunch() {
 
 
 
-onePunch()
+// onePunch()
 
 function scrollUpAppear() {
   window.addEventListener('scroll', function() {
