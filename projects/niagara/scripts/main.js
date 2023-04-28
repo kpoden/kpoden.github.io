@@ -41,6 +41,13 @@ class Products {
     this.init();
   }
 
+  posWindow() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const topDistance = scrollTop - (document.documentElement.clientTop || 0);
+    console.log(topDistance);
+    this.modal.style.top = topDistance + 100 + 'px';
+  }
+
   getProductInfo(productName) {
     this.productName = productName;
     this.products = JSON.parse(this.productsData.innerHTML).products;
@@ -320,6 +327,7 @@ class Products {
 
   changeWindow(id) {
     this.getProductInfo(id);
+    this.posWindow();
     this.initMainWindow();
     this.createAdvantages();
     this.createSecondWindow();
@@ -993,6 +1001,7 @@ gsap.to(".order", {
     
       close() {
         this.modal.classList.remove('opened-modal');
+        this.modal.style.top = '-50%';
         this.overlay.classList.remove('overlay--shown');
         this.isOpen = false;
       }
