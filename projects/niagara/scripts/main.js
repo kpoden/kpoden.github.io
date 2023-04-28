@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
   window.onbeforeunload = function () {
     window.scrollTo(0,0);
@@ -13,6 +14,80 @@ $(document).ready(function(){
     })
   }, 1);
 });
+
+
+class Map {
+  constructor(map, countries) {
+    this.map = document.querySelector(map);
+    this.countries = document.querySelector(countries);
+    this.mapList = document.querySelectorAll('[data-map]');
+    this.countriesList = document.querySelectorAll('[data-country]');
+    this.init()
+  }
+
+  addMapListener() {
+    this.mapList.forEach(el => {
+      el.addEventListener('mouseover', (e) => {
+        e = e.target;
+        this.currentCountry = e.getAttribute('data-map');
+        
+        this.countriesList.forEach(country => {
+          let countryName = country.getAttribute('data-country');
+          if(this.currentCountry == countryName) {
+            country.classList.add('underline');
+            console.log(country);
+
+          }
+        })
+
+      })
+
+      el.addEventListener('mouseleave', (e) => {
+        this.countriesList.forEach(country => {
+            country.classList.remove('underline');
+
+        })
+      })
+
+    })
+  }
+
+  addCountriesListener() {
+    this.countriesList.forEach(el => {
+      el.addEventListener('mouseover', (e) => {
+        e = e.target;
+        this.currentCountryName = e.getAttribute('data-country');
+
+        this.mapList.forEach(country => {
+          let countryMapName = country.getAttribute('data-map');
+          if(this.currentCountryName == countryMapName) {
+            country.classList.add('countryStroke');
+            console.log(country);
+
+          }
+        })
+      })
+
+      el.addEventListener('mouseleave', (e) => {
+        this.mapList.forEach(country => {
+            country.classList.remove('countryStroke');
+
+        })
+      })
+    })
+
+
+  }
+
+
+  init() {
+    this.addCountriesListener();
+    this.addMapListener();
+  }
+}
+
+const mapInstance = new Map('#map', '.countries__list');
+
 
 
 
