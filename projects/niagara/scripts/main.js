@@ -44,7 +44,6 @@ class Products {
   posWindow() {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const topDistance = scrollTop - (document.documentElement.clientTop || 0);
-    console.log(topDistance);
     this.modal.style.top = topDistance + 100 + 'px';
   }
 
@@ -243,6 +242,9 @@ class Products {
 
     this.product.volumes[this.currentVol].flavors.forEach((flavor) => {
       if(flavor.name == this.activeFlavour) {
+        if(flavor.logo){
+          this.logoImage.src = flavor.logo;
+        } 
         this.bg.style.background = flavor.bgcolor;
         this.productImage.src = flavor.image;
 
@@ -732,7 +734,7 @@ function videoAppear() {
 
 }
 
-// videoAppear();
+videoAppear();
 
 
 
@@ -1001,7 +1003,7 @@ gsap.to(".order", {
     
       close() {
         this.modal.classList.remove('opened-modal');
-        this.modal.style.top = '-100%';
+        this.modal.style.top = '-300%';
         this.overlay.classList.remove('overlay--shown');
         this.isOpen = false;
       }
