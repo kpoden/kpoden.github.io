@@ -141,7 +141,15 @@ class Products {
 
     if(this.product.secondWindow) {
       this.secondWindow.classList.remove('hidden');
-      console.log(this.product);
+      this.secWindowTextWrap.classList.remove('right-aligned');
+      this.secWindowTextWrap.classList.remove('bottom-aligned');
+      if(this.product.secondWindow[0].align == 'right') {
+        this.secWindowTextWrap.classList.add('right-aligned');
+      }
+      if(this.product.secondWindow[0].align == 'bottom') {
+        this.secWindowTextWrap.classList.add('bottom-aligned');
+      }
+
       
       srcSet.srcset = this.product.secondWindow[0].imageMob;
       imgSrc.src = this.product.secondWindow[0].image;
