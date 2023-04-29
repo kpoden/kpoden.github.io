@@ -101,6 +101,7 @@ class Products {
     this.switchWrap = document.querySelector('.switch-wrap');
     this.switchWrap.innerHTML = "";
     this.flavoursChooseDiv = document.querySelector('.flavours__choose');
+    this.thirdWindow = document.querySelector('.prod-tiger');
     this.currentVol = '0';
     this.currentProd = id;
     this.subtitleText = document.querySelector('.pm-header__title-sub');
@@ -147,8 +148,17 @@ class Products {
       this.secWindowTextWrap.innerHTML = this.product.secondWindow[0].content;
 
     }
-    
 
+  }
+
+  createThirdWindow() {
+    if(this.product.thirdWindow) {
+      this.thirdWindow.classList.remove('hidden');
+      this.thirdWindow.classList.add('shown');
+    } else {
+      this.thirdWindow.classList.remove('shown');
+      this.thirdWindow.classList.add('hidden');
+    }
   }
 
   createAdvantages() {
@@ -215,7 +225,14 @@ class Products {
     });
 
     const flavQuant = this.flavorList.length;
-    flavorQuantSpan.innerHTML = flavQuant;
+    if(flavQuant == 1) {
+      flavorQuantSpan.innerHTML = flavQuant + ' вкус:';
+    } else 
+    if(flavQuant > 1 && flavQuant < 5) {
+      flavorQuantSpan.innerHTML = flavQuant + ' вкуса:';
+    } else {
+      flavorQuantSpan.innerHTML = flavQuant + ' вкусов:';
+    }
 
 
     for (let i = 0; i < this.flavorList.length; i++) {
@@ -408,6 +425,7 @@ class Products {
     this.initMainWindow();
     this.createAdvantages();
     this.createSecondWindow();
+    this.createThirdWindow();
     this.getVolQuantity();
     this.createSwitch();
     this.addListenerVolume();
@@ -468,9 +486,12 @@ productTextAppear()
 
 function scrollFix() {
 
+
 document.addEventListener("DOMContentLoaded", function(event) {
 
   var id = '.header,.mission,.history,.work,.news';
+  const newsBlock = document.querySelector('.news');
+  const newsSpoiler = document.querySelector('.news__spoiler');
 
   window.addEventListener('load', function() {
     var elements = document.querySelectorAll(id);
@@ -511,6 +532,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }
     });
   });
+
+  newsSpoiler.addEventListener('click', function(event) {
+    var windowHeight = window.innerHeight;
+    var elementHeight = newsBlock.offsetHeight;
+    var topPosition = windowHeight - elementHeight;
+
+    if (topPosition < 0) {
+      newsBlock.style.top = topPosition + 'px';
+    } else {
+      newsBlock.style.top = '0';
+    }
+
+  })
 
 });
 
@@ -968,6 +1002,15 @@ document.getElementById("scroll-up").addEventListener("click", () => {
   })
 })
 
+document.querySelector(".pm-header__low").addEventListener("click", () => {
+  gsap.to(window, {
+      duration: 1,
+      scrollTo: {
+          y: ".pm-adv"
+      }
+  })
+})
+
 
 
 
@@ -1078,7 +1121,7 @@ gsap.to(".order", {
     
       close() {
         this.modal.classList.remove('opened-modal');
-        this.modal.style.top = '-300%';
+        this.modal.style.top = '-1000%';
         this.overlay.classList.remove('overlay--shown');
         this.isOpen = false;
       }
