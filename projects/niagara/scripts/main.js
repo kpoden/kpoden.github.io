@@ -114,6 +114,10 @@ class Products {
     this.secondWindow.classList.add('hidden');
     this.secWindowImgElement = document.querySelector('.prod-info__bg');
     this.secWindowTextWrap = document.querySelector('.prod-info__text');
+    this.pmDecorBg = document.querySelector('.pm-header__decorbg img');
+    this.pmDecorBg.src = '';
+    this.pmPlashka = document.querySelector('.pm-header__plashka img');
+    this.pmPlashka.src = '';
     this.init();
   }
 
@@ -209,6 +213,9 @@ class Products {
 
 
   initMainWindow() {
+    if(this.product.decorbg) {
+      this.pmDecorBg.src = this.product.decorbg;
+    }
     this.productImage.src = this.product.volumes[this.currentVol].flavors[0].image;
     this.bg.style.background = this.product.volumes[this.currentVol].flavors[0].bgcolor;
     this.subtitleText.innerHTML = this.product.subtitle;
@@ -344,7 +351,11 @@ class Products {
       if(flavor.name == this.activeFlavour) {
         if(flavor.logo){
           this.logoImage.src = flavor.logo;
-        } 
+        }
+
+        if(flavor.plashka) {
+          this.pmPlashka.src = flavor.plashka;
+        }
         this.bg.style.background = flavor.bgcolor;
         this.productImage.src = flavor.image;
 
