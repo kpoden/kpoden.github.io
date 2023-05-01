@@ -670,7 +670,7 @@ function onePunch() {
 
 
 
-// onePunch()
+onePunch()
 
 function scrollUpAppear() {
   window.addEventListener('scroll', function() {
@@ -1112,6 +1112,7 @@ gsap.to(".order", {
         this.modalTrigger = document.querySelectorAll(trigger);
         this.overlay = document.querySelector('.overlay-dark');
         this.isOpen = false;
+        this.scrollUp = document.getElementById('scroll-up');
         this.closeButton.addEventListener('click', () => this.close());
         this.overlay.addEventListener('click', () => this.close());
         document.addEventListener('keydown', (event) => {
@@ -1125,6 +1126,7 @@ gsap.to(".order", {
         this.modal.classList.add('opened-modal');
         this.overlay.classList.add('overlay--shown');
         this.isOpen = true;
+        this.scrollUp.classList.add('hidden');
       }
     
       close() {
@@ -1132,6 +1134,7 @@ gsap.to(".order", {
         this.modal.style.top = '-1000%';
         this.overlay.classList.remove('overlay--shown');
         this.isOpen = false;
+        this.scrollUp.classList.remove('hidden');
       }
 
       init() {
