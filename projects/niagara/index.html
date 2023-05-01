@@ -708,39 +708,8 @@
       </div>
     </div>
 
-    <div class="prod-template template-1 hidden">
-      <div class="prod-template__wrap">
-        <div class="prod-template__part part">
-          <img class="part__bg" src="images/products/templates/three/1.png" alt="">
-          <img class="part__top" src="images/products/templates/three/1top.png" alt="">
-          <div class="part__content">
-            <h3 class="part__title">Личи и манго</h3>
-            <p class="part__text">«Личи-манго» покорит вас с первого глотка. 
-              Насыщенный вкус жёлтого манго, подчёркнутый приятой освежающей кислинкой личи. 
-              Нежная, обволакивающая текстура и
-              легкое послевкусие.</p>
-          </div>
-        </div>
-        <div class="prod-template__part part">
-          <img class="part__bg" src="images/products/templates/three/2.png" alt="">
-          <img class="part__top" src="images/products/templates/three/2top.png" alt="">
-          <div class="part__content">
-            <h3 class="part__title">Киви</h3>
-            <p class="part__text">Насыщенный вкус киви сочетает приятную сладость и легкую терпкость. С каждым глотком раскрываются все грани вкуса ароматной и сладкой мякоти киви, спрятанной под шероховатой кожурой.</p>
-          </div>
-        </div>
-        <div class="prod-template__part part">
-          <img class="part__bg" src="images/products/templates/three/3.png" alt="">
-          <img class="part__top" src="images/products/templates/three/3top.png" alt="">
-          <div class="part__content">
-            <h3 class="part__title">Ананас папайя</h3>
-            <p class="part__text">Оцените экзотическую сладость умопомрачительного дуэта ананаса и папайи. Тропический вкус и тонкий аромат спелых фруктов открываются с каждым глотком напитка.</p>
-          </div>
-        </div>
-
-        
-        
-      </div>
+    <div class="prod-template hidden">
+      
     </div>
 
     <div class="prod-tiger">
@@ -786,6 +755,42 @@
     });
   });
 </script> -->
+
+<div class="templates">
+  <div class="template-1">
+    <div class="prod-template__wrap template-1">
+      <div class="prod-template__part part">
+        <img class="part__bg" src="images/products/templates/three/1.png" alt="">
+        <img class="part__top" src="images/products/templates/three/1top.png" alt="">
+        <div class="part__content">
+          <h3 class="part__title">Личи и манго</h3>
+          <p class="part__text">«Личи-манго» покорит вас с первого глотка. 
+            Насыщенный вкус жёлтого манго, подчёркнутый приятой освежающей кислинкой личи. 
+            Нежная, обволакивающая текстура и
+            легкое послевкусие.</p>
+        </div>
+      </div>
+      <div class="prod-template__part part">
+        <img class="part__bg" src="images/products/templates/three/2.png" alt="">
+        <img class="part__top" src="images/products/templates/three/2top.png" alt="">
+        <div class="part__content">
+          <h3 class="part__title">Киви</h3>
+          <p class="part__text">Насыщенный вкус киви сочетает приятную сладость и легкую терпкость. С каждым глотком раскрываются все грани вкуса ароматной и сладкой мякоти киви, спрятанной под шероховатой кожурой.</p>
+        </div>
+      </div>
+      <div class="prod-template__part part">
+        <img class="part__bg" src="images/products/templates/three/3.png" alt="">
+        <img class="part__top" src="images/products/templates/three/3top.png" alt="">
+        <div class="part__content">
+          <h3 class="part__title">Ананас папайя</h3>
+          <p class="part__text">Оцените экзотическую сладость умопомрачительного дуэта ананаса и папайи. Тропический вкус и тонкий аромат спелых фруктов открываются с каждым глотком напитка.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <style>
     .header, .mission,.history{background: #F2F2F2; z-index: 0;}
     .work{background: #F2F2F2;}
@@ -1161,9 +1166,10 @@
 
         "secondWindow": [
           {
+            "align": "bottom",
             "image": "images/products/zur/sw-bg.png",
             "imageMob": "images/products/zur/sw-bg-mob.png",
-            "content": "<h2>Минерализация: 0,5-0,9 г/дм</h2><br><h1>75м глубина скважины</h1>"
+            "content": "<h2 class='zur-top'>Минерализация: 0,5-0,9 г/дм</h2><br><div class='zur-bottom'><span class='zur-num'>75</span><span class='zur-small'>м</span> <p class='zur-right'>глубина <br> скважины</p></div>"
 
           }
         ],
@@ -1705,8 +1711,9 @@
           }
         ],
 
-        "secondWindow1": [
+        "secondWindow": [
           {
+            "template": ".template-1",
             "image": "images/products/tropical/sw-bg.png",
             "imageMob": "images/products/tropical/sw-bg-mob.png",
             "content": "Shh… прекрасно подойдетдля создания гармоничныхи непревзойдённых коктейлей."
@@ -1768,6 +1775,7 @@
 
         "secondWindow": [
           {
+            "width": "wider",
             "image": "images/products/morsel/sw-bg.png",
             "imageMob": "images/products/morsel/sw-bg-mob.png",
             "content": "<h1 class='neo-title'>Легенда о Морсэле:</h1><br><p class='smaller-text'>Любите ли Вы морсы так, как любят их жители старой Франции? Именно там обожает варить свой напиток добродушный Морсэль. Только из самых спелых ягод, собранных рано утром в предгорьях Альп, получается такой ароматный морс, который освежит в жаркий день и согреет холодным вечером. Изнеженная лучами яркого солнца, обласканная теплым ветром, каждая ягодка этого морса светится от счастья быть в числе избранных. В деревне Морсэля нет хмурых дней и пасмурных людей, потому что все пьют чудесный напиток из ягод. Попробуйте и Вы, и возможно Вам станет чуть веселей и приятней на душе.</p>"

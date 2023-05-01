@@ -118,6 +118,8 @@ class Products {
     this.pmDecorBg.src = '';
     this.pmPlashka = document.querySelector('.pm-header__plashka img');
     this.pmPlashka.src = '';
+    this.templateWrap = document.querySelector('.prod-template');
+    this.templateWrap.classList.add('hidden');
     this.init();
   }
 
@@ -142,8 +144,7 @@ class Products {
       const srcSet = this.secWindowImgElement.querySelector('source');
       const imgSrc = this.secWindowImgElement.querySelector('.prod-info__img');
 
-
-    if(this.product.secondWindow) {
+    if(this.product.secondWindow && !this.product.secondWindow[0].template) {
       this.secondWindow.classList.remove('hidden');
       this.secWindowTextWrap.classList.remove('right-aligned');
       this.secWindowTextWrap.classList.remove('bottom-aligned');
@@ -154,11 +155,20 @@ class Products {
         this.secWindowTextWrap.classList.add('bottom-aligned');
       }
 
+      if(this.product.secondWindow[0].width == 'wider') {
+        this.secWindowTextWrap.classList.add('wider');
+      }
+
       
       srcSet.srcset = this.product.secondWindow[0].imageMob;
       imgSrc.src = this.product.secondWindow[0].image;
       this.secWindowTextWrap.innerHTML = this.product.secondWindow[0].content;
 
+    } else if(this.product.secondWindow[0].template) {
+      this.templateWrap.classList.remove('hidden');
+      console.log(this.product.secondWindow[0].template);
+      const templateHtml = document.querySelector(this.product.secondWindow[0].template).innerHTML;
+      this.templateWrap.innerHTML = templateHtml;
     }
 
   }
