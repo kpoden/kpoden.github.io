@@ -119,6 +119,7 @@ class Products {
     this.pmPlashka = document.querySelector('.pm-header__plashka img');
     this.pmPlashka.src = '';
     this.templateWrap = document.querySelector('.prod-template');
+    this.templateWrap.innerHTML = "";
     this.templateWrap.classList.add('hidden');
     this.init();
   }
