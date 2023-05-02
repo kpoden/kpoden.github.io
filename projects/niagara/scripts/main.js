@@ -35,7 +35,6 @@ class Map {
           let countryName = country.getAttribute('data-country');
           if(this.currentCountry == countryName) {
             country.classList.add('underline');
-            console.log(country);
 
           }
         })
@@ -639,6 +638,10 @@ function onePunch() {
   sections_half.push(sectionFooter);
 
   function addScrollHalf(section) {
+    const navBar = document.querySelector('.n-menu');
+    if(!navBar.classList.contains('nav-clicked')) {
+
+    
     const rect = section.getBoundingClientRect();
       if(rect.top < (window.innerHeight || document.documentElement.clientHeight) / 1.1) {
         const topPos = document.documentElement.scrollTop + window.innerHeight/1.1;
@@ -653,22 +656,27 @@ function onePunch() {
       } else {
         section.classList.remove('scrolled');
       }
+    }
   }
 
   function addScroll(section) {
-    const rect = section.getBoundingClientRect();
-    if(isElementInViewport(section)) {
-      const topPos = document.documentElement.scrollTop + window.innerHeight;
-      if(!section.classList.contains('scrolled')) {
-        gsap.to(window, {
-          duration: 1,
-          scrollTo: topPos
-      })
-        section.classList.add('scrolled');
-      }
-  
-  } else {
-    section.classList.remove('scrolled');
+    const navBar = document.querySelector('.n-menu');
+      if(!navBar.classList.contains('nav-clicked')) {
+
+      const rect = section.getBoundingClientRect();
+      if(isElementInViewport(section)) {
+        const topPos = document.documentElement.scrollTop + window.innerHeight;
+        if(!section.classList.contains('scrolled')) {
+          gsap.to(window, {
+            duration: 1,
+            scrollTo: topPos
+        })
+          section.classList.add('scrolled');
+        }
+    
+    } else {
+      section.classList.remove('scrolled');
+    }
   }
   }
 
@@ -1119,10 +1127,6 @@ document.querySelector(".pm-header__low").addEventListener("click", () => {
 })
 
 
-
-
-
-
 gsap.from(".order",  {
   scrollTrigger: ".order",
   y: '50px',
@@ -1134,6 +1138,18 @@ gsap.to(".order", {
   y: '0',
   opacity: '1'
 });
+
+
+const navLinkList = document.querySelectorAll(".n-menu__item");
+const navMenuBlock = document.querySelector(".n-menu");
+navLinkList.forEach((link) => {
+  link.addEventListener('click', () => {
+    navMenuBlock.classList.add('nav-clicked');
+    setTimeout(()=>{
+      navMenuBlock.classList.remove('nav-clicked');
+    }, 1100);
+  })
+})
 
 
 
