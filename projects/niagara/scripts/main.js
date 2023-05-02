@@ -167,7 +167,6 @@ class Products {
 
     } else if(this.product.secondWindow[0].template) {
       this.templateWrap.classList.remove('hidden');
-      console.log(this.product.secondWindow[0].template);
       const templateHtml = document.querySelector(this.product.secondWindow[0].template).innerHTML;
       this.templateWrap.innerHTML = templateHtml;
     }
@@ -451,7 +450,7 @@ class Products {
 
   changeWindow(id) {
     this.getProductInfo(id);
-    this.posWindow();
+    // this.posWindow();
     this.initMainWindow();
     this.createAdvantages();
     this.createSecondWindow();
@@ -628,21 +627,19 @@ function onePunch() {
   const sectionHistory = document.querySelector('.history');
   const sectionFooter = document.querySelector('.footer');
 
-  sections = [];
+  const sections = [];
   sections.push(sectionMission);
   sections.push(sectionWork);
 
-  sections_half = [];
+  const sections_half = [];
   sections_half.push(sectionNews);
   sections_half.push(sectionProduct);
   sections_half.push(sectionGeography);
   sections_half.push(sectionHistory);
   sections_half.push(sectionFooter);
 
-
-  sections_half.forEach(function(section) {
-    window.addEventListener('scroll', () => {
-      const rect = section.getBoundingClientRect();
+  function addScrollHalf(section) {
+    const rect = section.getBoundingClientRect();
       if(rect.top < (window.innerHeight || document.documentElement.clientHeight) / 1.1) {
         const topPos = document.documentElement.scrollTop + window.innerHeight/1.1;
         if(!section.classList.contains('scrolled')) {
@@ -656,36 +653,116 @@ function onePunch() {
       } else {
         section.classList.remove('scrolled');
       }
-      
+  }
 
-  })
+  function addScroll(section) {
+    const rect = section.getBoundingClientRect();
+    if(isElementInViewport(section)) {
+      const topPos = document.documentElement.scrollTop + window.innerHeight;
+      if(!section.classList.contains('scrolled')) {
+        gsap.to(window, {
+          duration: 1,
+          scrollTo: topPos
+      })
+        section.classList.add('scrolled');
+      }
+  
+  } else {
+    section.classList.remove('scrolled');
+  }
+  }
 
-  })
+  // sections_half.forEach(function(section) {
+  //   window.addEventListener('scroll', addScrollHalf);
+  // });
+  
+  // sections.forEach(function(section) {
+  //   window.addEventListener('scroll', addScroll);
+  // });
+
+
+  let scrollListenerHalf;
+  let scrollListener;
+
+  sections_half.forEach(function(section) {
+    scrollListenerHalf = function() {
+      addScrollHalf(section);
+    };
+    window.addEventListener('scroll', scrollListenerHalf);
+  });
 
   sections.forEach(function(section) {
-    window.addEventListener('scroll', () => {
-      const rect = section.getBoundingClientRect();
+    scrollListener = function() {
+      addScroll(section);
+    };
+    window.addEventListener('scroll', scrollListener);
+  });
 
-      if(isElementInViewport(section)) {
+  const switchBtn = document.querySelector('.n-lang');
 
-        const topPos = document.documentElement.scrollTop + window.innerHeight;
+  switchBtn.addEventListener('click', () => {
+    console.log('removed');
+
+    sections.forEach(function(section) {
+      console.log(1);
+      window.removeEventListener('scroll', scrollListener);
+    });
+
+    sections_half.forEach(function(section) {
+      console.log(2);
+      window.removeEventListener('scroll', scrollListenerHalf);
+    });
+    
+    
+  })
+
+
+  // sections_half.forEach(function(section) {
+  //   window.addEventListener('scroll', () => {
+  //     const rect = section.getBoundingClientRect();
+  //     if(rect.top < (window.innerHeight || document.documentElement.clientHeight) / 1.1) {
+  //       const topPos = document.documentElement.scrollTop + window.innerHeight/1.1;
+  //       if(!section.classList.contains('scrolled')) {
+  //         gsap.to(window, {
+  //           duration: 1,
+  //           scrollTo: topPos
+  //       })
+      
+  //         section.classList.add('scrolled');
+  //       }
+  //     } else {
+  //       section.classList.remove('scrolled');
+  //     }
+      
+
+  // })
+
+  // })
+
+  // sections.forEach(function(section) {
+  //   window.addEventListener('scroll', () => {
+  //     const rect = section.getBoundingClientRect();
+
+  //     if(isElementInViewport(section)) {
+
+  //       const topPos = document.documentElement.scrollTop + window.innerHeight;
 
         
-        if(!section.classList.contains('scrolled')) {
-          gsap.to(window, {
-            duration: 1,
-            scrollTo: topPos
-        })
+  //       if(!section.classList.contains('scrolled')) {
+  //         gsap.to(window, {
+  //           duration: 1,
+  //           scrollTo: topPos
+  //       })
       
-          section.classList.add('scrolled');
-        }
+  //         section.classList.add('scrolled');
+  //       }
     
-    } else {
-      section.classList.remove('scrolled');
-    }
-  })
+  //   } else {
+  //     section.classList.remove('scrolled');
+  //   }
+  // })
 
-  })
+  // })
 
 
   }
@@ -873,7 +950,7 @@ function videoAppear() {
 
 }
 
-videoAppear();
+// videoAppear();
 
 
 
@@ -1135,8 +1212,10 @@ gsap.to(".order", {
         this.overlay = document.querySelector('.overlay-dark');
         this.isOpen = false;
         this.scrollUp = document.getElementById('scroll-up');
+        this.mainSection = document.querySelector('main');
         this.closeButton.addEventListener('click', () => this.close());
         this.overlay.addEventListener('click', () => this.close());
+        this.productSection = document.querySelector('.product');
         document.addEventListener('keydown', (event) => {
           if (event.key === 'Escape' && this.isOpen) {
             this.close();
@@ -1148,7 +1227,15 @@ gsap.to(".order", {
         this.modal.classList.add('opened-modal');
         this.overlay.classList.add('overlay--shown');
         this.isOpen = true;
+        
+        this.modal.style.top = '100px';
         this.scrollUp.classList.add('hidden');
+        this.mainSection.classList.add('fixed_main');
+        let topScroll = this.productSection.getBoundingClientRect().top;
+        this.mainSection.style.top = '-'+topScroll+'px';
+        
+
+
       }
     
       close() {
@@ -1157,6 +1244,15 @@ gsap.to(".order", {
         this.overlay.classList.remove('overlay--shown');
         this.isOpen = false;
         this.scrollUp.classList.remove('hidden');
+        this.mainSection.classList.remove('fixed_main');
+        this.mainSection.style.top = '';
+          gsap.to(window, {
+              duration: 0,
+              scrollTo: {
+                  y: ".product"
+              }
+          })
+
       }
 
       init() {
