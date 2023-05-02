@@ -113,6 +113,8 @@ class Products {
     this.secondWindow.classList.add('hidden');
     this.secWindowImgElement = document.querySelector('.prod-info__bg');
     this.secWindowTextWrap = document.querySelector('.prod-info__text');
+    this.pmDecorBgWrap = document.querySelector('.pm-header__decorbg');
+    this.pmDecorBgWrap.classList.add('hidden');
     this.pmDecorBg = document.querySelector('.pm-header__decorbg img');
     this.pmDecorBg.src = '';
     this.pmPlashka = document.querySelector('.pm-header__plashka img');
@@ -223,6 +225,7 @@ class Products {
 
   initMainWindow() {
     if(this.product.decorbg) {
+      this.pmDecorBgWrap.classList.remove('hidden');
       this.pmDecorBg.src = this.product.decorbg;
     }
     this.productImage.src = this.product.volumes[this.currentVol].flavors[0].image;
