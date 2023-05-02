@@ -639,45 +639,48 @@ function onePunch() {
 
   function addScrollHalf(section) {
     const navBar = document.querySelector('.n-menu');
-    if(!navBar.classList.contains('nav-clicked')) {
 
     
     const rect = section.getBoundingClientRect();
       if(rect.top < (window.innerHeight || document.documentElement.clientHeight) / 1.1) {
         const topPos = document.documentElement.scrollTop + window.innerHeight/1.1;
         if(!section.classList.contains('scrolled')) {
-          gsap.to(window, {
-            duration: 1,
-            scrollTo: topPos
-        })
+
+          if(!navBar.classList.contains('nav-clicked')) {
+            gsap.to(window, {
+              duration: 1,
+              scrollTo: topPos
+          })
+        }
+          
       
           section.classList.add('scrolled');
         }
       } else {
         section.classList.remove('scrolled');
       }
-    }
   }
 
   function addScroll(section) {
     const navBar = document.querySelector('.n-menu');
-      if(!navBar.classList.contains('nav-clicked')) {
 
-      const rect = section.getBoundingClientRect();
-      if(isElementInViewport(section)) {
-        const topPos = document.documentElement.scrollTop + window.innerHeight;
-        if(!section.classList.contains('scrolled')) {
-          gsap.to(window, {
-            duration: 1,
-            scrollTo: topPos
-        })
-          section.classList.add('scrolled');
-        }
-    
-    } else {
-      section.classList.remove('scrolled');
-    }
-  }
+        const rect = section.getBoundingClientRect();
+        if(isElementInViewport(section)) {
+          const topPos = document.documentElement.scrollTop + window.innerHeight;
+          if(!section.classList.contains('scrolled')) {
+            if(!navBar.classList.contains('nav-clicked')) {
+              gsap.to(window, {
+                duration: 1,
+                scrollTo: topPos
+            })
+          }
+
+            section.classList.add('scrolled');
+          }
+      
+      } else {
+        section.classList.remove('scrolled');
+      }
   }
 
   // sections_half.forEach(function(section) {
@@ -706,23 +709,21 @@ function onePunch() {
     window.addEventListener('scroll', scrollListener);
   });
 
-  const switchBtn = document.querySelector('.n-lang');
+  // const switchBtn = document.querySelector('.n-lang');
 
-  switchBtn.addEventListener('click', () => {
-    console.log('removed');
+  // switchBtn.addEventListener('click', () => {
+  //   console.log('removed');
 
-    sections.forEach(function(section) {
-      console.log(1);
-      window.removeEventListener('scroll', scrollListener);
-    });
+  //   sections.forEach(function(section) {
+  //     window.removeEventListener('scroll', scrollListener);
+  //   });
 
-    sections_half.forEach(function(section) {
-      console.log(2);
-      window.removeEventListener('scroll', scrollListenerHalf);
-    });
+  //   sections_half.forEach(function(section) {
+  //     window.removeEventListener('scroll', scrollListenerHalf);
+  //   });
     
     
-  })
+  // })
 
 
   // sections_half.forEach(function(section) {
@@ -1106,6 +1107,9 @@ document.getElementById("menu-contacts").addEventListener("click", () => {
             y: ".footer"
         }
     })
+
+    // const el = document.querySelector('.footer');
+    // el.scrollIntoView({behavior: "smooth"});
 })
 
 document.getElementById("scroll-up").addEventListener("click", () => {
