@@ -1225,17 +1225,19 @@ navLinkList.forEach((link) => {
 
 
     class Modal {
-      constructor(modalId, trigger) {
+      constructor(modalId, trigger, overlay) {
+        this.modalId = modalId;
         this.modal = document.getElementById(modalId);
         this.closeButton = this.modal.querySelector('.modal__close');
         this.modalTrigger = document.querySelectorAll(trigger);
-        this.overlay = document.querySelector('.overlay-dark');
+        this.overlay = document.querySelector(overlay);
         this.isOpen = false;
         this.scrollUp = document.getElementById('scroll-up');
         this.mainSection = document.querySelector('main');
         this.closeButton.addEventListener('click', () => this.close());
         this.overlay.addEventListener('click', () => this.close());
         this.productSection = document.querySelector('.product');
+        this.newsSection = document.querySelector('.news');
         document.addEventListener('keydown', (event) => {
           if (event.key === 'Escape' && this.isOpen) {
             this.close();
@@ -1251,8 +1253,17 @@ navLinkList.forEach((link) => {
         this.modal.style.top = '100px';
         this.scrollUp.classList.add('hidden');
         this.mainSection.classList.add('fixed_main');
-        let topScroll = this.productSection.getBoundingClientRect().top;
-        this.mainSection.style.top = '-'+topScroll+'px';
+        if(this.modalId == 'modal-prod') {
+          const topScroll = this.productSection.getBoundingClientRect().top;
+          this.mainSection.style.top = '-'+topScroll+'px';
+          console.log(topScroll);
+        } else 
+        if(this.modalId == 'modal-news') {
+          const topScroll = this.newsSection.getBoundingClientRect().top;
+          this.mainSection.style.top = '-'+topScroll+'px';
+          console.log(topScroll);
+        }
+        
         
 
 
@@ -1265,13 +1276,27 @@ navLinkList.forEach((link) => {
         this.isOpen = false;
         this.scrollUp.classList.remove('hidden');
         this.mainSection.classList.remove('fixed_main');
+
         this.mainSection.style.top = '';
-          gsap.to(window, {
+
+        if(this.modalId == 'modal-prod') {
+            console.log('prod');
+            gsap.to(window, {
               duration: 0,
               scrollTo: {
                   y: ".product"
               }
           })
+        } else if(this.modalId == 'modal-news') {
+          console.log('news');
+          gsap.to(window, {
+            duration: 0,
+            scrollTo: {
+                y: ".news"
+            }
+        })
+        }
+          
 
       }
 
@@ -1282,11 +1307,11 @@ navLinkList.forEach((link) => {
       }
     }
 
-    const modalNews = new Modal('modal-news', '.modal-trigger');
+    const modalNews = new Modal('modal-news', '.modal-trigger', '.overlay-dark');
 
     modalNews.init();
 
-    const modalProd = new Modal('modal-prod', '.modal-trigger-prod');
+    const modalProd = new Modal('modal-prod', '.modal-trigger-prod', '.overlay-dark-news');
 
     modalProd.init();
 
