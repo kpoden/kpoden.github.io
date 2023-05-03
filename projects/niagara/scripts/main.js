@@ -108,7 +108,8 @@ class Products {
     this.pmStarBlock = document.querySelector('.prod-display__star');
     this.pmStarBlock.classList.add('hidden');
     this.pmTextWrap = document.querySelector('.pm-star__text');
-    this.advWrap = document.querySelector('.pm-adv');
+    this.pmAdvSection = document.querySelector('.pm-adv');
+    this.advWrap = document.querySelector('.pm-adv__wrapper');
     this.secondWindow = document.querySelector('.prod-info');
     this.secondWindow.classList.add('hidden');
     this.secWindowImgElement = document.querySelector('.prod-info__bg');
@@ -125,10 +126,85 @@ class Products {
     this.init();
   }
 
+
+  scrollFix() {
+    var id = '.product-modal__header,.pm-adv,.prod-info,.prod-tiger,.prod-template';
+    var elements = document.querySelectorAll(id);
+    var windowHeight = window.innerHeight;
+    const visElements = [];
+
+    elements.forEach(el=>{
+      if(!el.classList.contains('hidden')) {
+        visElements.push(el);
+      }
+    })
+    const lastVisEl = visElements[visElements.length - 1];
+    const lastVisElHeight = lastVisEl.getBoundingClientRect().height;
+
+    const paddingBottomModal = windowHeight - lastVisElHeight;
+
+    if(paddingBottomModal > 0) {
+      this.modal.style.paddingBottom = paddingBottomModal + 'px';
+    }
+
+    window.addEventListener('resize', function() {
+      const prodModalResized = document.getElementById('modal-prod');
+      var windowHeight = window.innerHeight;
+      const paddingBottomModal = windowHeight - lastVisElHeight;
+
+      if(paddingBottomModal > 0) {
+        prodModalResized.style.paddingBottom = paddingBottomModal + 'px';
+      }
+    });
+    
+    elements.forEach(function(element) {
+      var elementHeight = element.offsetHeight;
+      var topPosition = windowHeight - elementHeight;
+
+
+      if (topPosition < 0) {
+        element.style.top = topPosition + 'px';
+      } else {
+        element.style.top = '0';
+      }
+    });
+
+    window.addEventListener('resize', function() {
+      var elements = document.querySelectorAll(id);
+      var windowHeight = window.innerHeight;
+  
+      elements.forEach(function(element) {
+        var elementHeight = element.offsetHeight;
+        var topPosition = windowHeight - elementHeight;
+  
+        // if (element.classList.contains('history')) {
+        //   topPosition = (windowHeight / 2) - elementHeight;
+        // }
+  
+        if (topPosition < 0) {
+          element.style.top = topPosition + 'px';
+        } else {
+          element.style.top = '0';
+        }
+      });
+    });
+  }
+
+  initSticky() {
+    this.bg.classList.add('pm-sticky');
+    this.pmAdvSection.classList.add('pm-sticky');
+    this.secondWindow.classList.add('pm-sticky');
+    this.thirdWindow.classList.add('pm-sticky');
+    this.templateWrap.classList.add('pm-sticky');
+    // this.modal.style.paddingBottom = "1000px";
+    
+  }
+
   posWindow() {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const topDistance = scrollTop - (document.documentElement.clientTop || 0);
     this.modal.style.top = topDistance + 100 + 'px';
+    this.initSticky()
   }
 
   getProductInfo(productName) {
@@ -452,7 +528,7 @@ class Products {
 
   changeWindow(id) {
     this.getProductInfo(id);
-    // this.posWindow();
+    this.posWindow();
     this.initMainWindow();
     this.createAdvantages();
     this.createSecondWindow();
@@ -461,6 +537,7 @@ class Products {
     this.createSwitch();
     this.addListenerVolume();
     this.initFlavorsList();
+    this.scrollFix();
     
   }
 
@@ -812,6 +889,7 @@ orderDisappear()
 
 function parallex() {
   const ypos = window.pageYOffset;
+  // console.log(ypos);
   const header = $('.header').height();    
   if(ypos-header>135){
       $('.header').css({'opacity':0})
@@ -1259,7 +1337,6 @@ navLinkList.forEach((link) => {
         if(this.modalId == 'modal-prod') {
           const topScroll = this.productSection.getBoundingClientRect().top;
           this.mainSection.style.top = '-'+topScroll+'px';
-          console.log(topScroll);
         } else 
         if(this.modalId == 'modal-news') {
           const topScroll = this.newsSection.getBoundingClientRect().top;
